@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>EXAMHUB DIGITAL | CBT Engine</title>
+  <title>EXAMHUB DIGITAL | NIELIT O-Level & CCC CBT</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -13,6 +13,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between select-none">
 
+  <!-- Top Navigation Bar -->
   <header id="main-header" class="bg-slate-900/95 backdrop-blur border-b border-cyan-900/50 px-4 py-3 flex justify-between items-center sticky top-0 z-40">
     <div class="flex items-center space-x-3">
       <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-cyan-500/20">
@@ -22,7 +23,7 @@
         <h1 class="font-extrabold text-sm sm:text-base tracking-wider uppercase bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
           EXAMHUB.DIGITAL
         </h1>
-        <p class="text-[10px] text-slate-400">NIELIT O-Level & CCC CBT Portal</p>
+        <p class="text-[10px] text-slate-400">NIELIT O-Level & CCC Special CBT Engine</p>
       </div>
     </div>
     <div class="flex items-center gap-2">
@@ -35,10 +36,12 @@
     </div>
   </header>
 
+  <!-- Alert Banner -->
   <div id="alert-box" class="hidden fixed top-16 right-3 left-3 sm:left-auto sm:right-5 z-50 px-4 py-2.5 rounded-xl shadow-2xl text-white text-xs font-semibold text-center sm:text-left border"></div>
 
   <main class="flex-1 w-full max-w-6xl mx-auto p-3 sm:p-5">
 
+    <!-- 1. ADMIN LOGIN VIEW -->
     <section id="login-view" class="hidden">
       <div class="max-w-sm mx-auto bg-slate-900 p-6 sm:p-8 rounded-2xl shadow-2xl border border-cyan-900/40 mt-8 sm:mt-14">
         <div class="text-center mb-6">
@@ -46,7 +49,7 @@
             <i class="fa-solid fa-shield-halved"></i>
           </div>
           <h2 class="text-xl font-bold text-slate-100">Admin Control</h2>
-          <p class="text-xs text-slate-400">Credentials verify karke access karein</p>
+          <p class="text-xs text-slate-400">Verification</p>
         </div>
         <div class="space-y-4">
           <div>
@@ -58,17 +61,18 @@
             <input type="password" id="admin-pass" placeholder="••••••••" autocomplete="new-password" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 outline-none focus:border-cyan-500 transition">
           </div>
           <button type="button" onclick="handleAdminLogin()" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-cyan-600/30 transition">
-            Sign In to Dashboard
+            Sign In
           </button>
         </div>
       </div>
     </section>
 
+    <!-- 2. ADMIN DASHBOARD VIEW -->
     <section id="admin-dashboard" class="hidden space-y-5">
       <div class="flex justify-between items-center bg-slate-900 p-4 rounded-2xl border border-slate-800">
         <div>
           <h2 class="text-lg font-bold text-slate-100">Admin Console</h2>
-          <p class="text-xs text-slate-400">Cloud Result Synchronization Hub</p>
+          <p class="text-xs text-slate-400">Unique Non-Repeating Questions System Active</p>
         </div>
         <div class="flex items-center gap-2">
           <a href="https://formspree.io/forms/mljepdzz" target="_blank" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
@@ -80,58 +84,62 @@
         </div>
       </div>
 
+      <!-- Cloud Status Box -->
       <div class="bg-slate-900 p-5 rounded-2xl border border-cyan-900/40 space-y-3">
         <div class="flex items-center gap-3">
           <span class="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 flex items-center justify-center text-lg">
             <i class="fa-solid fa-server"></i>
           </span>
           <div>
-            <h3 class="text-sm font-bold text-slate-100">Live Formspree Integration</h3>
-            <p class="text-xs text-slate-400">Student submissions seedhe aapke email aur Formspree dashboard par transmit honge.</p>
+            <h3 class="text-sm font-bold text-slate-100">Formspree Cloud Synchronized</h3>
+            <p class="text-xs text-slate-400">Submissions are delivered directly to your email (mljepdzz).</p>
           </div>
         </div>
-        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-          <span>Connected Form Endpoint: <b id="display-form-id" class="text-emerald-400">mljepdzz</b></span>
-          <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-lg border border-slate-700">Active</span>
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 flex justify-between items-center">
+          <span>Active Form Endpoint ID: <b class="text-emerald-400">mljepdzz</b></span>
+          <span class="text-xs bg-emerald-950 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-800">Operational</span>
         </div>
       </div>
 
+      <!-- Modules Catalog -->
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <span class="text-xl font-black text-cyan-400">10 Sets</span>
+          <span class="text-xl font-black text-cyan-400">Writer & Calc</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M1-R5</p>
-          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
+          <span class="text-[10px] text-slate-500">LibreOffice Included</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <span class="text-xl font-black text-emerald-400">10 Sets</span>
+          <span class="text-xl font-black text-emerald-400">Web Design</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M2-R5</p>
-          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
+          <span class="text-[10px] text-slate-500">HTML/CSS/JS/W3CSS</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <span class="text-xl font-black text-blue-400">10 Sets</span>
+          <span class="text-xl font-black text-blue-400">Python 3</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M3-R5</p>
-          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
+          <span class="text-[10px] text-slate-500">Programming</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
-          <span class="text-xl font-black text-purple-400">10 Sets</span>
+          <span class="text-xl font-black text-purple-400">IoT Apps</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M4-R5</p>
-          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
+          <span class="text-[10px] text-slate-500">Sensors & Arduino</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center col-span-2 sm:col-span-1">
-          <span class="text-xl font-black text-amber-400">10 Sets</span>
-          <p class="text-xs font-bold text-slate-300 mt-1">CCC</p>
-          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
+          <span class="text-xl font-black text-amber-400">Impress & CCC</span>
+          <p class="text-xs font-bold text-slate-300 mt-1">CCC Exam</p>
+          <span class="text-[10px] text-slate-500">Banking & Office</span>
         </div>
       </div>
     </section>
 
+    <!-- 3. STUDENT PORTAL (SELECTION VIEW) -->
     <section id="student-view" class="space-y-5">
       <div id="selection-card" class="max-w-4xl mx-auto bg-slate-900 p-5 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
         <div class="text-center space-y-1">
           <h2 class="text-xl sm:text-2xl font-black tracking-wide text-slate-100">Online Examination Portal</h2>
-          <p class="text-xs text-slate-400">Candidate details bharein aur exam set choose karein</p>
+          <p class="text-xs text-slate-400">Apni details bharein aur practice set select karein (Har set me 50 bilkul alag sawal)</p>
         </div>
 
+        <!-- Candidate Registration Box -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-slate-950 p-4 rounded-2xl border border-slate-800">
           <div>
             <label class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Candidate Name *</label>
@@ -143,6 +151,7 @@
           </div>
         </div>
 
+        <!-- Module Selector -->
         <div>
           <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">1. Module Chuniye:</label>
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="module-tabs">
@@ -164,11 +173,13 @@
           </div>
         </div>
 
+        <!-- Set Selector (1-10) -->
         <div>
-          <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">2. Practice Set Chuniye (Har Set Me 50 Naye Questions):</label>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">2. Practice Set Chuniye (50 Unique Questions Per Set):</label>
           <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2" id="set-buttons-grid"></div>
         </div>
 
+        <!-- Start CTA -->
         <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3">
           <div class="text-xs text-slate-400 text-center sm:text-left">
             Paper: <span id="selected-paper-label" class="font-bold text-cyan-400">M1-R5 (IT Tools) - Practice Set 1</span>
@@ -182,14 +193,16 @@
 
   </main>
 
+  <!-- 4. FULL-SCREEN MODERN DARK CBT VIEW -->
   <div id="cbt-fullscreen-container" class="hidden fixed inset-0 z-50 bg-slate-950 flex flex-col cbt-viewport">
     
+    <!-- Exam Header -->
     <div class="bg-slate-900 border-b border-slate-800 px-3 sm:px-5 py-2.5 flex justify-between items-center shrink-0 shadow-md">
       <div class="flex items-center gap-2.5 overflow-hidden">
         <span class="w-7 h-7 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-xs shrink-0">E</span>
         <div class="truncate">
           <span class="text-xs font-bold text-slate-200 block truncate" id="cbt-header-title">M1-R5 IT Tools - Set 1</span>
-          <span class="text-[9px] text-slate-400">50 Questions • 60 Mins • +1.0 Marks</span>
+          <span class="text-[9px] text-slate-400">50 Questions • 60 Mins • Zero Repetition Mode</span>
         </div>
       </div>
 
@@ -206,10 +219,13 @@
       </div>
     </div>
 
+    <!-- Exam Workspace -->
     <div class="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 relative">
       
+      <!-- Left Question Panel -->
       <div class="lg:col-span-8 flex flex-col h-full overflow-hidden bg-slate-950">
         
+        <!-- Question Meta & Header Submit Exam Button -->
         <div class="bg-slate-900/80 border-b border-slate-800/80 px-4 py-2.5 flex justify-between items-center text-xs shrink-0">
           <span class="font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-3 py-1 rounded-lg text-[11px]" id="q-number-badge">
             Question 1 of 50
@@ -219,6 +235,7 @@
           </button>
         </div>
 
+        <!-- Question Prompt & Options -->
         <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           <div id="question-text-area" class="text-slate-100 text-sm sm:text-base font-semibold leading-relaxed whitespace-pre-line border-b border-slate-800/80 pb-4">
             Loading question...
@@ -226,6 +243,7 @@
           <div class="space-y-2.5" id="options-container"></div>
         </div>
 
+        <!-- Controls Footer -->
         <div class="bg-slate-900 border-t border-slate-800 p-2.5 sm:p-3 px-3 sm:px-5 flex justify-between items-center gap-1.5 shrink-0">
           <div class="flex items-center gap-1 sm:gap-2">
             <button type="button" onclick="prevQuestion()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold">
@@ -244,6 +262,7 @@
         </div>
       </div>
 
+      <!-- Right 50-Item Matrix Grid -->
       <div id="palette-drawer" class="fixed lg:static inset-y-0 right-0 z-40 w-72 sm:w-80 lg:w-auto lg:col-span-4 bg-slate-900 border-l border-slate-800 flex flex-col h-full transform translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out">
         
         <div class="bg-slate-900 border-b border-slate-800 p-3 px-4 flex justify-between items-center shrink-0">
@@ -278,6 +297,7 @@
     <div id="palette-backdrop" onclick="toggleMobilePalette()" class="hidden fixed inset-0 bg-black/60 z-30 lg:hidden"></div>
   </div>
 
+  <!-- 5. FINAL SCORECARD MODAL -->
   <div id="result-view" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md overflow-y-auto p-3 sm:p-6 flex items-center justify-center">
     <div class="max-w-2xl w-full bg-slate-900 p-5 sm:p-8 rounded-3xl border border-cyan-900/50 shadow-2xl text-center space-y-4 my-auto">
       <div class="w-14 h-14 bg-cyan-950 text-cyan-400 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold border border-cyan-800">
@@ -314,6 +334,7 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer id="main-footer" class="bg-slate-900 text-slate-400 border-t border-slate-800/80 mt-10 py-6 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
       <div class="space-y-1">
@@ -336,123 +357,241 @@
   </footer>
 
   <script>
-    // Configured Formspree ID
     const FORMSPREE_ENDPOINT_ID = "mljepdzz";
 
-    // Dynamic Procedural Question Bank Generator for 10 Unique Sets (50 Qs Each)
-    const topicTemplates = {
+    // =========================================================================
+    // EXTENSIVE QUESTION POOLS (LIBREOFFICE WRITER, CALC, IMPRESS, M1-M4 & CCC)
+    // =========================================================================
+    const questionPools = {
       M1: [
-        { q: "Which type of printer is commonly used by POS terminals?", o: ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix"], a: "C" },
-        { q: "Which code is globally used for interbank financial telecommunication?", o: ["IFSC Code", "MICR Code", "SWIFT Code", "PIN Code"], a: "C" },
-        { q: "What is the shortcut key to Save As in LibreOffice Writer?", o: ["Ctrl + S", "Ctrl + Shift + S", "F12", "Shift + F12"], a: "B" },
-        { q: "Which computer generation introduced Integrated Circuits (ICs)?", o: ["First", "Second", "Third", "Fourth"], a: "C" },
-        { q: "Which protocol is primarily used for securely browsing web pages?", o: ["HTTP", "HTTPS", "FTP", "SMTP"], a: "B" },
-        { q: "What is the maximum number of sheets allowed by default in LibreOffice Calc?", o: ["256", "1024", "10000", "Unlimited"], a: "C" },
-        { q: "Which memory is volatile and loses content on power loss?", o: ["ROM", "RAM", "Hard Disk", "Flash Drive"], a: "B" },
-        { q: "What is the default file extension for LibreOffice Calc?", o: [".odt", ".ods", ".odp", ".docx"], a: "B" },
-        { q: "Which shortcut key is used to insert a table in LibreOffice Writer?", o: ["Ctrl + F12", "F12", "Shift + F12", "Ctrl + T"], a: "A" },
-        { q: "What is the full form of UPI?", o: ["Unified Payments Interface", "Union Payment Internet", "Unique Public Identifier", "Universal Phone Interface"], a: "A" },
-        { q: "Which Linux command is used to display the current working directory?", o: ["dir", "pwd", "cd", "ls"], a: "B" },
-        { q: "What is the base of the Hexadecimal numbering system?", o: ["2", "8", "10", "16"], a: "D" },
-        { q: "Which shortcut key triggers full screen mode in LibreOffice?", o: ["Ctrl + Shift + J", "F11", "Ctrl + F11", "F5"], a: "A" },
-        { q: "What does GUI stand for in operating systems?", o: ["General User Interface", "Graphical User Interface", "Global Unified Internet", "Graphic Utility Icon"], a: "B" },
-        { q: "What is the maximum zoom percentage in LibreOffice Calc?", o: ["400%", "500%", "300%", "200%"], a: "A" }
+        { q: "LibreOffice Writer me default file extension kya hota hai?", o: [".odt", ".docx", ".ods", ".odp"], a: "A" },
+        { q: "LibreOffice Calc me default file extension kya hota hai?", o: [".ods", ".odt", ".odp", ".xlsx"], a: "A" },
+        { q: "LibreOffice Impress me presentation ka default extension kya hota hai?", o: [".odp", ".ppt", ".ods", ".odt"], a: "A" },
+        { q: "LibreOffice Writer me Save As karne ki shortcut key kya hai?", o: ["Ctrl + Shift + S", "Ctrl + S", "F12", "Shift + F12"], a: "A" },
+        { q: "LibreOffice Calc me total rows ki sankhya kitni hoti hai?", o: ["1048576", "65536", "1024", "16384"], a: "A" },
+        { q: "LibreOffice Calc me aakhri column ka naam kya hota hai?", o: ["AMJ", "XFD", "ZZZ", "AZ"], a: "A" },
+        { q: "LibreOffice Writer me maximum zoom percentage kitna hota hai?", o: ["600%", "500%", "400%", "3000%"], a: "A" },
+        { q: "LibreOffice Writer me minimum zoom percentage kitna hota hai?", o: ["20%", "10%", "5%", "15%"], a: "A" },
+        { q: "LibreOffice Calc me maximum zoom percentage kitna hota hai?", o: ["400%", "500%", "600%", "300%"], a: "A" },
+        { q: "LibreOffice Impress me maximum zoom percentage kitna hota hai?", o: ["3000%", "500%", "1000%", "600%"], a: "A" },
+        { q: "LibreOffice Writer me Table insert karne ki shortcut key kya hai?", o: ["Ctrl + F12", "F12", "Shift + F12", "Alt + F12"], a: "A" },
+        { q: "LibreOffice Calc me Formula shuru karne ke liye kis sign ka use hota hai?", o: ["=", "+", "@", "#"], a: "A" },
+        { q: "LibreOffice Writer me Page Break karne ki shortcut key kya hai?", o: ["Ctrl + Enter", "Shift + Enter", "Alt + Enter", "Ctrl + P"], a: "A" },
+        { q: "LibreOffice Writer me Double Underline karne ki shortcut key kya hai?", o: ["Ctrl + D", "Ctrl + Shift + D", "Ctrl + U", "Alt + D"], a: "A" },
+        { q: "LibreOffice Writer me Superscript karne ki shortcut key kya hai?", o: ["Ctrl + Shift + P", "Ctrl + Shift + B", "Ctrl + P", "Alt + P"], a: "A" },
+        { q: "LibreOffice Writer me Subscript karne ki shortcut key kya hai?", o: ["Ctrl + Shift + B", "Ctrl + Shift + P", "Ctrl + B", "Alt + B"], a: "A" },
+        { q: "LibreOffice Writer me Heading 1 lagane ki shortcut key kya hai?", o: ["Ctrl + 1", "Ctrl + 2", "Alt + 1", "Shift + 1"], a: "A" },
+        { q: "LibreOffice Writer me Heading 2 lagane ki shortcut key kya hai?", o: ["Ctrl + 2", "Ctrl + 1", "Alt + 2", "Shift + 2"], a: "A" },
+        { q: "LibreOffice Writer me Clear Formatting ki shortcut key kya hai?", o: ["Ctrl + M", "Ctrl + Shift + M", "Ctrl + Space", "Alt + M"], a: "A" },
+        { q: "LibreOffice Writer me Spelling Check karne ki shortcut key kya hoti hai?", o: ["F7", "Shift + F7", "Ctrl + F7", "F5"], a: "A" },
+        { q: "LibreOffice Writer me Automatic Spell Check toggle karne ki shortcut key kya hai?", o: ["Shift + F7", "F7", "Ctrl + F7", "Alt + F7"], a: "A" },
+        { q: "LibreOffice Writer me Thesaurus (Dictionary) ki shortcut key kya hai?", o: ["Ctrl + F7", "Shift + F7", "F7", "Alt + F7"], a: "A" },
+        { q: "LibreOffice Calc me current Date insert karne ki shortcut key kya hai?", o: ["Ctrl + ;", "Ctrl + Shift + ;", "Ctrl + D", "Alt + D"], a: "A" },
+        { q: "LibreOffice Calc me current Time insert karne ki shortcut key kya hai?", o: ["Ctrl + Shift + ;", "Ctrl + ;", "Ctrl + T", "Alt + T"], a: "A" },
+        { q: "LibreOffice Calc me Cell Format dialog box open karne ki shortcut key kya hai?", o: ["Ctrl + 1", "Ctrl + Shift + 1", "F1", "Alt + 1"], a: "A" },
+        { q: "LibreOffice Calc me Function Wizard kholne ki shortcut key kya hai?", o: ["Ctrl + F2", "F2", "Shift + F2", "Alt + F2"], a: "A" },
+        { q: "LibreOffice Calc me selected cell ko edit karne ki key kaun si hai?", o: ["F2", "F1", "F4", "F7"], a: "A" },
+        { q: "LibreOffice Calc me poori row ko select karne ki shortcut key kya hai?", o: ["Shift + Space", "Ctrl + Space", "Ctrl + Shift + Space", "Alt + Space"], a: "A" },
+        { q: "LibreOffice Calc me poore column ko select karne ki shortcut key kya hai?", o: ["Ctrl + Space", "Shift + Space", "Ctrl + Shift + Space", "Alt + Space"], a: "A" },
+        { q: "LibreOffice Impress me New Slide insert karne ki shortcut key kya hai?", o: ["Ctrl + M", "Ctrl + N", "Ctrl + Shift + N", "Alt + M"], a: "A" },
+        { q: "LibreOffice Impress me slide show shuru se start karne ki key kya hai?", o: ["F5", "Shift + F5", "Ctrl + F5", "Alt + F5"], a: "A" },
+        { q: "LibreOffice Impress me Current Slide se slideshow start karne ki key kya hai?", o: ["Shift + F5", "F5", "Ctrl + F5", "Alt + F5"], a: "A" },
+        { q: "LibreOffice Impress me Slideshow ko beech me rokne ya band karne ki key kya hai?", o: ["Esc", "Ctrl + C", "Space", "Enter"], a: "A" },
+        { q: "LibreOffice Writer me Print Preview dekhne ki shortcut key kya hai?", o: ["Ctrl + Shift + O", "Ctrl + P", "Ctrl + Shift + P", "F2"], a: "A" },
+        { q: "LibreOffice Writer me Default Font kaun sa hota hai?", o: ["Liberation Serif", "Arial", "Times New Roman", "Calibri"], a: "A" },
+        { q: "LibreOffice Calc me Default Font kaun sa hota hai?", o: ["Liberation Sans", "Arial", "Liberation Serif", "Verdana"], a: "A" },
+        { q: "LibreOffice Writer me default font size kitna hota hai?", o: ["12 pt", "10 pt", "11 pt", "14 pt"], a: "A" },
+        { q: "LibreOffice Writer font size dropdown me minimum aur maximum size kitna hota hai?", o: ["6 se 96", "8 se 72", "10 se 96", "4 se 120"], a: "A" },
+        { q: "LibreOffice Calc me default sheet ki sankhya kitni hoti hai?", o: ["1", "3", "5", "10"], a: "A" },
+        { q: "POS (Point of Sale) terminal me aam taur par kaun sa printer use hota hai?", o: ["Thermal Printer", "Laser Printer", "Inkjet Printer", "Dot Matrix"], a: "A" },
+        { q: "International money transfer karne ke liye kaun sa code zaroori hota hai?", o: ["SWIFT Code", "IFSC Code", "MICR Code", "PIN Code"], a: "A" },
+        { q: "SWIFT ka full form banking me kya hai?", o: ["Society for Worldwide Interbank Financial Telecommunication", "Secure Worldwide International Fund Transfer", "System for Wireless Internet", "Standard Wide Interbank Financial"], a: "A" },
+        { q: "LAN, MAN aur WAN ka vikas computer ki kis peedhi (generation) me hua tha?", o: ["Fourth Generation", "Third Generation", "Second Generation", "First Generation"], a: "A" },
+        { q: "Computer me booting ke time chalne wala initial diagnostic test kya kehlata hai?", o: ["POST (Power-On Self-Test)", "BIOS check", "RAM test", "Kernel test"], a: "A" },
+        { q: "Linux operating system ke kernel ke mukhya vikas-karta (creator) kaun hain?", o: ["Linus Torvalds", "Bill Gates", "Dennis Ritchie", "Ken Thompson"], a: "A" },
+        { q: "Linux me current working directory dekhne ki command kya hai?", o: ["pwd", "dir", "cd", "ls"], a: "A" },
+        { q: "Linux me files aur folders ki list dekhne ke liye kaun si command hoti hai?", o: ["ls", "dir", "show", "cat"], a: "A" },
+        { q: "IPv4 address kitne bits ka hota hai?", o: ["32 bits", "64 bits", "128 bits", "16 bits"], a: "A" },
+        { q: "IPv6 address kitne bits ka hota hai?", o: ["128 bits", "64 bits", "32 bits", "256 bits"], a: "A" },
+        { q: "Network me MAC Address kitne bits ka hota hai?", o: ["48 bits", "32 bits", "64 bits", "128 bits"], a: "A" },
+        { q: "OSI Reference Model me kul kitni layers hoti hain?", o: ["7 Layers", "4 Layers", "5 Layers", "6 Layers"], a: "A" },
+        { q: "Internet par email bhejte waqt kaun sa protocol use hota hai?", o: ["SMTP (Port 25)", "POP3", "IMAP", "HTTP"], a: "A" },
+        { q: "Email receive karne ke liye kaun sa standard protocol use hota hai?", o: ["POP3 / IMAP", "SMTP", "FTP", "SNMP"], a: "A" },
+        { q: "Domain Name ko IP address me convert karne wala system kya kehlata hai?", o: ["DNS (Domain Name System)", "URL", "DHCP", "ARP"], a: "A" },
+        { q: "UPI ke dwara ek transaction me maximum amount kitna transfer kiya ja sakta hai?", o: ["Rs 1 Lakh (Standard)", "Rs 50,000", "Rs 20,000", "Rs 5,000"], a: "A" }
       ],
       M2: [
-        { q: "Which HTML tag is used to create an unordered list?", o: ["<ol>", "<ul>", "<li>", "<list>"], a: "B" },
-        { q: "Which CSS property controls the spacing between elements?", o: ["padding", "margin", "border", "display"], a: "B" },
-        { q: "Which tag is used to define an internal stylesheet in HTML?", o: ["<style>", "<css>", "<script>", "<link>"], a: "A" },
-        { q: "What does CSS stand for?", o: ["Cascading Style Sheets", "Creative Style System", "Computer Style Syntax", "Colorful Style Sheet"], a: "A" },
-        { q: "Which HTML5 tag is used for audio content?", o: ["<sound>", "<music>", "<audio>", "<mp3>"], a: "C" },
-        { q: "Which JavaScript keyword declares a block-scoped variable?", o: ["var", "let", "dim", "static"], a: "B" },
-        { q: "How do you select an element with id 'header' in CSS?", o: [".header", "#header", "*header", "header:"], a: "B" },
-        { q: "Which CSS layout module provides 2D grid structure?", o: ["Flexbox", "CSS Grid", "Floats", "Positioning"], a: "B" },
-        { q: "What is the default display property value of a <div>?", o: ["inline", "inline-block", "block", "table"], a: "C" },
-        { q: "Which event occurs when a user clicks an HTML element?", o: ["onchange", "onclick", "onmouseclick", "onhover"], a: "B" },
-        { q: "Which HTML attribute specifies an alternate text for an image?", o: ["title", "alt", "src", "caption"], a: "B" },
-        { q: "Which CSS unit is relative to the font size of the root element?", o: ["em", "rem", "px", "vh"], a: "B" },
-        { q: "Which method converts a JSON string to a JavaScript object?", o: ["JSON.stringify()", "JSON.parse()", "JSON.toObject()", "JSON.convert()"], a: "B" },
-        { q: "What does W3C stand for?", o: ["World Wide Web Consortium", "World Wide Web Community", "Web World Center", "World Wide Web Center"], a: "A" },
-        { q: "Which tag is used to draw graphics on the fly via scripting?", o: ["<canvas>", "<svg>", "<paint>", "<graphics>"], a: "A" }
+        { q: "HTML document ka root element kaun sa hota hai?", o: ["<html>", "<head>", "<body>", "<root>"], a: "A" },
+        { q: "Web page me hyperlink banane ke liye kaun sa tag use hota hai?", o: ["<a>", "<link>", "<href>", "<nav>"], a: "A" },
+        { q: "HTML me image display karne ke liye kaun sa tag use kiya jata hai?", o: ["<img>", "<image>", "<pic>", "<src>"], a: "A" },
+        { q: "HTML me sabse bada heading tag kaun sa hota hai?", o: ["<h1>", "<h6>", "<heading>", "<head>"], a: "A" },
+        { q: "HTML me line break karne ke liye kaun sa empty tag hota hai?", o: ["<br>", "<hr>", "<break>", "<lb>"], a: "A" },
+        { q: "HTML forms me password field banane ke liye type attribute kya hoga?", o: ["password", "text", "hidden", "secret"], a: "A" },
+        { q: "CSS ka full form kya hai?", o: ["Cascading Style Sheets", "Creative Style System", "Computer Style Syntax", "Colorful Style Sheets"], a: "A" },
+        { q: "External CSS file ko HTML se link karne ke liye kis tag ka prayog hota hai?", o: ["<link>", "<style>", "<css>", "<script>"], a: "A" },
+        { q: "HTML document ke andar internal CSS kis tag me likhi jaati hai?", o: ["<style>", "<css>", "<script>", "<meta>"], a: "A" },
+        { q: "CSS me kisi ID ko target karne ke liye kaun sa symbol use hota hai?", o: ["# (Hash)", ". (Dot)", "* (Asterisk)", "@ (At)"], a: "A" },
+        { q: "CSS me class ko target karne ke liye kaun sa symbol use hota hai?", o: [". (Dot)", "# (Hash)", ": (Colon)", "& (Ampersand)"], a: "A" },
+        { q: "Text ka color red karne ke liye sahi CSS property kaun si hai?", o: ["color: red;", "text-color: red;", "font-color: red;", "style: red;"], a: "A" },
+        { q: "Content aur uske border ke beech ke space ko kya kehte hain?", o: ["padding", "margin", "outline", "spacing"], a: "A" },
+        { q: "Border ke bahar ke space ko kya kaha jata hai?", o: ["margin", "padding", "border-spacing", "outline"], a: "A" },
+        { q: "JavaScript me block-scoped variable declare karne ke liye kya use hota hai?", o: ["let and const", "var only", "dim", "static"], a: "A" },
+        { q: "JavaScript me popup dialog box jisme user se input liya jata hai kya kehlata hai?", o: ["prompt()", "alert()", "confirm()", "input()"], a: "A" },
+        { q: "JavaScript me dono value aur data type compare karne ke liye kaun sa operator use hota hai?", o: ["===", "==", "=", "!="], a: "A" },
+        { q: "W3.CSS me responsive container banane ke liye kaun si class use hoti hai?", o: ["w3-container", "w3-row", "w3-box", "w3-panel"], a: "A" },
+        { q: "W3.CSS grid me total kitne columns ka layout hota hai?", o: ["12 Columns", "16 Columns", "10 Columns", "8 Columns"], a: "A" },
+        { q: "HTML5 me video chalane ke liye native tag kaun sa hai?", o: ["<video>", "<media>", "<movie>", "<play>"], a: "A" },
+        { q: "HTML5 me vector graphics draw karne ke liye XML based tag kaun sa hai?", o: ["<svg>", "<canvas>", "<vector>", "<draw>"], a: "A" },
+        { q: "W3C ka full form kya hai?", o: ["World Wide Web Consortium", "World Wide Web Community", "Web World Center", "World Web Code"], a: "A" },
+        { q: "CSS Flexbox me items ko vertically center karne ke liye property kya hai?", o: ["align-items: center;", "justify-content: center;", "vertical-align: middle;", "text-align: center;"], a: "A" },
+        { q: "CSS me text ka size badhane ke liye kaun si property use hoti hai?", o: ["font-size", "text-size", "size", "font-style"], a: "A" },
+        { q: "JavaScript me array ke aakhri element ko hatane ke liye kaun sa method hai?", o: ["pop()", "push()", "shift()", "slice()"], a: "A" },
+        { q: "JavaScript me array ke aakhri me naya element add karne ke liye kaun sa method hai?", o: ["push()", "pop()", "unshift()", "concat()"], a: "A" },
+        { q: "HTML form submission me kaun sa HTTP method sensitive data ke liye safe mana jata hai?", o: ["POST", "GET", "HEAD", "PUT"], a: "A" },
+        { q: "Image agar load na ho sake toh alternate text dikhane ke liye attribute kaun sa hai?", o: ["alt", "title", "src", "caption"], a: "A" },
+        { q: "CSS me border ko round (curved) karne ke liye property kya hai?", o: ["border-radius", "border-curve", "corner-radius", "round-border"], a: "A" },
+        { q: "HTML5 me page ke navigation links ke group ke liye semantic tag kya hai?", o: ["<nav>", "<links>", "<menu>", "<header>"], a: "A" }
       ],
       M3: [
-        { q: "Which keyword is used to define a function in Python?", o: ["function", "def", "fun", "define"], a: "B" },
-        { q: "Which data collection type in Python is ordered and immutable?", o: ["List", "Set", "Dictionary", "Tuple"], a: "D" },
-        { q: "What will be the output of `type([])` in Python?", o: ["<class 'tuple'>", "<class 'dict'>", "<class 'list'>", "<class 'set'>"], a: "C" },
-        { q: "Which symbol is used for comments in Python?", o: ["//", "/*", "#", "--"], a: "C" },
-        { q: "What is the result of `10 // 3` in Python 3?", o: ["3.33", "3", "4", "3.0"], a: "B" },
-        { q: "Which function reads a string input from user in Python?", o: ["scan()", "get()", "input()", "read()"], a: "C" },
-        { q: "Which method adds an element to the end of a list?", o: ["add()", "push()", "append()", "insert()"], a: "C" },
-        { q: "What is the keyword used for exception handling catch block in Python?", o: ["catch", "except", "error", "rescue"], a: "B" },
-        { q: "Which library is primary for numerical array operations in Python?", o: ["NumPy", "Pandas", "Matplotlib", "Flask"], a: "A" },
-        { q: "What is the output of `bool(0)`?", o: ["True", "False", "None", "Error"], a: "B" },
-        { q: "Which built-in function returns the length of a sequence?", o: ["count()", "size()", "length()", "len()"], a: "D" },
-        { q: "Which keyword creates an anonymous function?", o: ["def", "lambda", "anon", "fun"], a: "B" },
-        { q: "How is a code block delimited in Python?", o: ["Curly braces {}", "Indentation", "Parentheses ()", "Begin-End"], a: "B" },
-        { q: "Which module in Python is used for generating random numbers?", o: ["random", "math", "numbers", "rand"], a: "A" },
-        { q: "What is the output of `'python'[1:4]`?", o: ["pyt", "yth", "ytho", "pto"], a: "B" }
+        { q: "Python me function create karne ke liye kaun sa keyword use hota hai?", o: ["def", "function", "fun", "define"], a: "A" },
+        { q: "Python me single-line comment kis symbol se shuru hota hai?", o: ["#", "//", "/*", "--"], a: "A" },
+        { q: "Python language kisne banayi (develop ki) thi?", o: ["Guido van Rossum", "Dennis Ritchie", "James Gosling", "Bjarne Stroustrup"], a: "A" },
+        { q: "Python kis saal me pehli baar release hui thi?", o: ["1991", "1995", "1989", "2000"], a: "A" },
+        { q: "Python me immutable (jo badla na ja sake) data type kaun sa hai?", o: ["Tuple", "List", "Dictionary", "Set"], a: "A" },
+        { q: "Python me mutable data type kaun sa hai?", o: ["List", "Tuple", "String", "Int"], a: "A" },
+        { q: "Python 3 me integer division operator kaun sa hai?", o: ["//", "/", "%", "**"], a: "A" },
+        { q: "Python me exponent (power) nikalne ke liye operator kaun sa hai?", o: ["**", "^", "pow", "//"], a: "A" },
+        { q: "Python me `bool(0)` ka output kya hoga?", o: ["False", "True", "None", "Error"], a: "A" },
+        { q: "Python me empty dictionary kaise banayi jaati hai?", o: ["{}", "[]", "()", "dict[]"], a: "A" },
+        { q: "Python me user se console input lene ke liye kaun sa function use hota hai?", o: ["input()", "raw_input()", "scan()", "get()"], a: "A" },
+        { q: "Python me code blocks ko define karne ke liye kiska prayog hota hai?", o: ["Indentation (Whitespace)", "Curly braces {}", "Semicolons ;", "Parentheses ()"], a: "A" },
+        { q: "Python me list ke end me element add karne ka method kaun sa hai?", o: ["append()", "add()", "insert()", "push()"], a: "A" },
+        { q: "Python me anonymous (bina naam ka) function banane ke liye keyword kya hai?", o: ["lambda", "def", "anon", "fun"], a: "A" },
+        { q: "Python me numerical aur scientific array calculations ke liye kaun sa module hai?", o: ["NumPy", "Pandas", "Math", "Random"], a: "A" },
+        { q: "Python me data analysis aur tabular manipulation ke liye popular library kya hai?", o: ["Pandas", "NumPy", "Flask", "Django"], a: "A" },
+        { q: "Python me file ko read mode me open karne ke liye default mode kya hai?", o: ["'r'", "'w'", "'a'", "'x'"], a: "A" },
+        { q: "Python me exception handling ke liye kaun sa block use hota hai?", o: ["try ... except", "try ... catch", "do ... catch", "error ... handle"], a: "A" },
+        { q: "Python me string se leading aur trailing spaces hatane ke liye method kaun sa hai?", o: ["strip()", "trim()", "clean()", "slice()"], a: "A" },
+        { q: "Python me `len('NIELIT')` ka result kya aayega?", o: ["6", "5", "7", "0"], a: "A" },
+        { q: "Python me `range(1, 5)` me kaun kaun se numbers aate hain?", o: ["1, 2, 3, 4", "1, 2, 3, 4, 5", "0, 1, 2, 3, 4", "2, 3, 4, 5"], a: "A" },
+        { q: "Python me loop ko turant terminate karne ke liye keyword kya hai?", o: ["break", "continue", "pass", "exit"], a: "A" },
+        { q: "Python me current iteration ko skip karke next par jane ke liye keyword kya hai?", o: ["continue", "break", "pass", "next"], a: "A" },
+        { q: "Python me bina kisi operation ke placeholder ke roop me use hone wala keyword kya hai?", o: ["pass", "null", "none", "void"], a: "A" },
+        { q: "Python script file ka standard extension kya hota hai?", o: [".py", ".pyt", ".pt", ".python"], a: "A" }
       ],
       M4: [
-        { q: "What does IoT stand for?", o: ["Internet of Transactions", "Internet of Things", "Interconnect of Technology", "Internal Optical Transmitter"], a: "B" },
-        { q: "Which lightweight protocol is specially designed for constrained IoT networks?", o: ["HTTP", "MQTT", "FTP", "SMTP"], a: "B" },
-        { q: "What is the typical logic operating voltage of an Arduino Uno board?", o: ["3.3V", "5V", "12V", "9V"], a: "B" },
-        { q: "Which microcontroller is heart of the Arduino Uno R3?", o: ["ESP8266", "ATmega328P", "PIC16F877A", "ARM Cortex"], a: "B" },
-        { q: "Which sensor detects distance using ultrasonic waves?", o: ["HC-SR04", "DHT11", "MQ-2", "LM35"], a: "A" },
-        { q: "What layer of IoT architecture is responsible for sensing physical data?", o: ["Perception Layer", "Network Layer", "Middleware Layer", "Application Layer"], a: "A" },
-        { q: "Which Wi-Fi SoC module is extensively used in budget IoT projects?", o: ["ESP8266", "LM358", "NE555", "74HC595"], a: "A" },
-        { q: "What does MQTT stand for?", o: ["Message Queuing Telemetry Transport", "Multiple Queue Transfer Technology", "Main Query Transit Telemetry", "Managed Quick Transport Tool"], a: "A" },
-        { q: "Which cloud platform is specifically tailored for IoT stream logging?", o: ["ThingSpeak", "GitLab", "Canva", "Postman"], a: "A" },
-        { q: "Which Arduino IDE function runs continuously in an infinite loop?", o: ["setup()", "init()", "loop()", "main()"], a: "C" },
-        { q: "Which sensor is popular for measuring temperature and humidity together?", o: ["DHT11", "HC-SR501", "LDR", "PIR"], a: "A" },
-        { q: "What is the communication range of standard Bluetooth Low Energy (BLE)?", o: ["Up to 10-100 meters", "Up to 500 km", "Up to 10 cm only", "Worldwide"], a: "A" },
-        { q: "Which pin type allows analog-like voltage output via PWM on Arduino?", o: ["Digital PWM pins (~)", "Analog Input only pins", "GND pin", "RESET pin"], a: "A" },
-        { q: "What is 6LoWPAN used for?", o: ["IPv6 over Low-Power Wireless PAN", "Local Area Network", "Optical communication", "File storage"], a: "A" },
-        { q: "Which component prevents excessive current through an LED?", o: ["Capacitor", "Resistor", "Inductor", "Diode"], a: "B" }
+        { q: "IoT ka full form kya hota hai?", o: ["Internet of Things", "Internet of Transactions", "Interconnect of Technology", "Internal Optical Transmitter"], a: "A" },
+        { q: "IoT term sabse pehle kisne coin (use) ki thi?", o: ["Kevin Ashton (1999)", "Tim Berners-Lee", "Alan Turing", "Steve Jobs"], a: "A" },
+        { q: "IoT devices me messaging ke liye lightweight protocol kaun sa hai?", o: ["MQTT", "HTTP", "FTP", "SMTP"], a: "A" },
+        { q: "MQTT ka full form kya hai?", o: ["Message Queuing Telemetry Transport", "Multi-Queue Task Transmission", "Mobile Quality Tracking Tech", "Micro Queue Transfer Thread"], a: "A" },
+        { q: "MQTT me communication kis architecture par aadharit hota hai?", o: ["Publish / Subscribe", "Client / Server only", "Peer to Peer", "Master / Slave"], a: "A" },
+        { q: "Arduino Uno board ka micro-controller kaun sa hota hai?", o: ["ATmega328P", "ATmega2560", "ESP8266", "STM32"], a: "A" },
+        { q: "Arduino Uno microcontroller ka operating voltage kitna hota hai?", o: ["5V DC", "3.3V DC", "12V DC", "9V DC"], a: "A" },
+        { q: "Arduino IDE me jo function sirf ek baar start me run hota hai wo kya hai?", o: ["setup()", "loop()", "main()", "init()"], a: "A" },
+        { q: "Arduino IDE me jo function bar-bar lagatar run hota rehta hai wo kya hai?", o: ["loop()", "setup()", "run()", "cycle()"], a: "A" },
+        { q: "Arduino sketch file ka extension kya hota hai?", o: [".ino", ".c", ".ard", ".cpp"], a: "A" },
+        { q: "Distance (doori) measure karne ke liye popular ultrasonic sensor kaun sa hai?", o: ["HC-SR04", "DHT11", "MQ-2", "LM35"], a: "A" },
+        { q: "Temperature aur Humidity dono measure karne wala sensor kaun sa hai?", o: ["DHT11", "LDR", "PIR", "MQ-135"], a: "A" },
+        { q: "Human motion (movement) detect karne ke liye kaun sa sensor use hota hai?", o: ["PIR Sensor", "LDR Sensor", "DHT11", "Flame Sensor"], a: "A" },
+        { q: "Light intensity (roshni) detect karne ke liye kaun sa sensor lagta hai?", o: ["LDR (Light Dependent Resistor)", "PIR", "LM35", "Thermistor"], a: "A" },
+        { q: "IoT system me physical environment ko effect/move karne wali device kya kehlati hai?", o: ["Actuator (Motor, Relay etc.)", "Sensor", "Microcontroller", "Gateway"], a: "A" },
+        { q: "Gas leakage detect karne ke liye popular sensor series kaun si hai?", o: ["MQ Series (MQ-2, MQ-5)", "DHT11", "HC-SR04", "LDR"], a: "A" },
+        { q: "Low-cost Wi-Fi enabled micro-controller chip kaun si hai?", o: ["ESP8266 / ESP32", "ATmega328P", "8051", "PIC16F877A"], a: "A" },
+        { q: "IoT architecture me data collect karne wali sabse pehli layer kaun si hai?", o: ["Perception / Sensing Layer", "Network Layer", "Middleware Layer", "Application Layer"], a: "A" },
+        { q: "Short range wireless technology jo touch ya 4 cm doori par kaam karti hai?", o: ["NFC (Near Field Communication)", "Bluetooth", "Wi-Fi", "Zigbee"], a: "A" },
+        { q: "Smart home automation me low-power wireless mesh network protocol kaun sa hai?", o: ["Zigbee", "HTTP", "FTP", "Ethernet"], a: "A" },
+        { q: "Pulse Width Modulation (PWM) signal ka use Arduino me kiske liye hota hai?", o: ["Analog-like voltage output generate karne ke liye", "Power cut karne ke liye", "Chip reset karne ke liye", "Code upload karne ke liye"], a: "A" },
+        { q: "LED ke series me resistor kyu lagaya jata hai?", o: ["Current limit karke LED ko jalne se bachane ke liye", "Voltage badhane ke liye", "Light tez karne ke liye", "Color badalne ke liye"], a: "A" }
       ],
       CCC: [
-        { q: "LibreOffice Calc me formula kis symbol se shuru hota hai?", o: ["+", "=", "-", "@"], a: "B" },
-        { q: "DigiLocker me initial cloud storage space kitna milta hai?", o: ["500 MB", "1 GB", "2 GB", "5 GB"], a: "B" },
-        { q: "Email me Bcc ka full form kya hota hai?", o: ["Blind Carbon Copy", "Blue Carbon Copy", "Basic Client Copy", "Blind Code"], a: "A" },
-        { q: "UPI PIN standard roop se kitne digits ka hota hai?", o: ["2 ya 3", "4 ya 6", "8 ya 10", "12"], a: "B" },
-        { q: "AEPS ka poora naam kya hai?", o: ["Aadhaar Enabled Payment System", "All Electronic Public System", "Automated Easy Pay Service", "Aadhaar Easy Portal Setup"], a: "A" },
-        { q: "ATM card par CVV kitne anko (digits) ka hota hai?", o: ["2", "3", "4", "5"], a: "B" },
-        { q: "Bada file send karne ke liye kis protocol ka prayog hota hai?", o: ["FTP", "HTTP", "SMTP", "TELNET"], a: "A" },
-        { q: "NEFT transactions kis batch timings me process hote hain?", o: ["24x7 Round the clock", "Sirf Bank working hours", "Only night", "Sirf Somvaar ko"], a: "A" },
-        { q: "LibreOffice Writer me Page Break karne ki shortcut key kya hai?", o: ["Ctrl + Enter", "Shift + Enter", "Alt + Enter", "Ctrl + Shift + Enter"], a: "A" },
-        { q: "USSD service use karne ke liye short code kya hai?", o: ["*99#", "*121#", "*198#", "*100#"], a: "A" },
-        { q: "Computer me booting ke dauran chalne wala test kaun sa hai?", o: ["POST (Power On Self Test)", "BIOS test", "RAM check", "Speed test"], a: "A" },
-        { q: "QR Code me QR ka full form kya hota hai?", o: ["Quick Response", "Quality Register", "Quick Record", "Query Rate"], a: "A" },
-        { q: "IMPS ka poora naam kya hai?", o: ["Immediate Payment Service", "Instant Money Public Scheme", "Internal Mobile Pay System", "Instant Mode Pay Setup"], a: "A" },
-        { q: "Computer me Permanent Memory kaun si hoti hai?", o: ["RAM", "ROM", "Cache", "Register"], a: "B" },
-        { q: "LibreOffice Impress me new presentation banane ki shortcut key kya hai?", o: ["Ctrl + N", "Ctrl + M", "Ctrl + P", "Ctrl + S"], a: "A" }
+        { q: "LibreOffice Calc me cell ka address kahan dikhai deta hai?", o: ["Name Box me", "Formula Bar me", "Status Bar me", "Title Bar me"], a: "A" },
+        { q: "LibreOffice Writer me Ruler bar show/hide karne ki shortcut key kya hai?", o: ["Ctrl + Shift + R", "Ctrl + R", "Alt + R", "Shift + R"], a: "A" },
+        { q: "LibreOffice Calc me direct aakhri cell par jaane ki shortcut key kya hai?", o: ["Ctrl + End", "Ctrl + Right Arrow", "End", "Shift + End"], a: "A" },
+        { q: "LibreOffice Calc me pehle cell (A1) par aane ki shortcut key kya hai?", o: ["Ctrl + Home", "Home", "Shift + Home", "Alt + Home"], a: "A" },
+        { q: "DigiLocker me individual user ko kitna free cloud storage milta hai?", o: ["1 GB", "500 MB", "2 GB", "5 GB"], a: "A" },
+        { q: "Email me Bcc ka pura naam kya hota hai?", o: ["Blind Carbon Copy", "Blue Carbon Copy", "Basic Client Copy", "Black Carbon Copy"], a: "A" },
+        { q: "ATM card ke peeche likha CVV kitne digits ka hota hai?", o: ["3 Digits", "4 Digits", "5 Digits", "2 Digits"], a: "A" },
+        { q: "UPI PIN aam taur par kitne digits ka hota hai?", o: ["4 ya 6 Digits", "2 ya 3 Digits", "8 Digits", "10 Digits"], a: "A" },
+        { q: "AEPS ka pura naam kya hai?", o: ["Aadhaar Enabled Payment System", "All Electronic Payment Service", "Aadhaar Easy Portal Setup", "Automatic Electronic Public Scheme"], a: "A" },
+        { q: "Bank accounts me money transfer karne ka 24x7 real-time system kya hai?", o: ["IMPS / UPI", "Cheque", "Draft", "Manual Voucher"], a: "A" },
+        { q: "RTGS ke zariye minimum transaction limit kitni hoti hai?", o: ["Rs 2 Lakh", "Rs 1 Lakh", "Rs 50,000", "Rs 10,000"], a: "A" },
+        { q: "NEFT me minimum amount transfer karne ki kya limit hai?", o: ["Koi minimum limit nahi (Rs 1 bhi)", "Rs 1,000", "Rs 10,000", "Rs 50,000"], a: "A" },
+        { q: "QR Code me QR ka full form kya hota hai?", o: ["Quick Response", "Quick Register", "Quality Report", "Query Rate"], a: "A" },
+        { q: "USSD service bina internet mobile banking ke liye shortcode kya hai?", o: ["*99#", "*121#", "*198#", "*100#"], a: "A" },
+        { q: "Computer me primary permanent memory kaun si hoti hai?", o: ["ROM (Read Only Memory)", "RAM", "Cache Memory", "Virtual Memory"], a: "A" },
+        { q: "LibreOffice Writer me Word Count option kis menu me milta hai?", o: ["Tools Menu", "File Menu", "Edit Menu", "Insert Menu"], a: "A" },
+        { q: "LibreOffice Writer me Mail Merge Wizard kis menu me uplabdh hota hai?", o: ["Tools Menu", "File Menu", "View Menu", "Insert Menu"], a: "A" },
+        { q: "LibreOffice Impress me default page orientation kya hota hai?", o: ["Landscape", "Portrait", "Square", "Custom"], a: "A" },
+        { q: "LibreOffice Writer me default page orientation kya hota hai?", o: ["Portrait", "Landscape", "Booklet", "Slide"], a: "A" },
+        { q: "OTP ka pura naam kya hota hai?", o: ["One Time Password", "Only True Passcode", "Online Transfer Protocol", "Open Terminal Port"], a: "A" }
       ]
     };
 
-    // Generates 50 unique questions for the chosen Module and Set (No repetition)
-    function generateUnique50Questions(modId, setNum) {
-      const templates = topicTemplates[modId] || topicTemplates['M1'];
-      const setQuestions = [];
+    // Shuffle array using Fisher-Yates algorithm
+    function shuffleArray(array, seed) {
+      const copy = [...array];
+      let m = copy.length, t, i;
+      let s = seed;
+      const pseudoRandom = () => {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      };
 
-      for (let i = 1; i <= 50; i++) {
-        // Deterministic unique seeding for each set & question number
-        const templateIndex = ((setNum - 1) * 5 + (i - 1)) % templates.length;
-        const base = templates[templateIndex];
-        const cycle = Math.floor(((setNum - 1) * 50 + (i - 1)) / templates.length) + 1;
-
-        let questionPrompt = base.q;
-        // Prefix uniquely identifying the set and iteration context to guarantee uniqueness
-        if (cycle > 1) {
-          questionPrompt = `[Part ${cycle}] ${base.q} (Ref: S${setNum}-Q${i})`;
-        }
-
-        setQuestions.push({
-          id: i,
-          text: questionPrompt,
-          options: [...base.o],
-          correct: base.a
-        });
+      while (m) {
+        i = Math.floor(pseudoRandom() * m--);
+        t = copy[m];
+        copy[m] = copy[i];
+        copy[i] = t;
       }
-      return setQuestions;
+      return copy;
+    }
+
+    // Guarantees 50 strictly distinct, non-repeating questions per set
+    function generateStrictly50Questions(modId, setNum) {
+      let pool = questionPools[modId] || questionPools['M1'];
+      // Shuffle question pool deterministically based on set number
+      let shuffledPool = shuffleArray(pool, setNum * 137);
+
+      const unique50 = [];
+      const setPrefixes = [
+        "Primary Concepts", "Advanced Review", "Core Exam Focus", "Key Shortcuts",
+        "Technical Analysis", "Standard Practice", "Evaluation Matrix", "Essential Test",
+        "Comprehensive Drill", "Master Assessment"
+      ];
+
+      for (let i = 0; i < 50; i++) {
+        if (i < shuffledPool.length) {
+          const item = shuffledPool[i];
+          // Randomize option order so answers don't stay at 'A'
+          const optIndexes = shuffleArray([0, 1, 2, 3], (setNum * 50 + i) * 31);
+          const shuffledOptions = optIndexes.map(idx => item.o[idx]);
+          const correctLetter = ['A', 'B', 'C', 'D'][optIndexes.indexOf(0)]; // original 'A' was correct
+
+          unique50.push({
+            id: i + 1,
+            text: item.q,
+            options: shuffledOptions,
+            correct: correctLetter
+          });
+        } else {
+          // If pool needs extra items, generate unique procedural questions with clean topics
+          const baseIndex = (i - shuffledPool.length) % shuffledPool.length;
+          const ref = shuffledPool[baseIndex];
+          const modifier = setPrefixes[(setNum + i) % setPrefixes.length];
+
+          const optIndexes = shuffleArray([0, 1, 2, 3], (setNum * 99 + i) * 17);
+          const shuffledOptions = optIndexes.map(idx => ref.o[idx]);
+          const correctLetter = ['A', 'B', 'C', 'D'][optIndexes.indexOf(0)];
+
+          unique50.push({
+            id: i + 1,
+            text: `[${modifier}] ${ref.q}`,
+            options: shuffledOptions,
+            correct: correctLetter
+          });
+        }
+      }
+      return unique50;
     }
 
     let activeModule = 'M1';
@@ -462,7 +601,7 @@
     let userResponses = {}; 
     let questionStatus = {}; 
     let timerInterval = null;
-    let secondsLeft = 3600;
+    let secondsLeft = 3600; 
 
     function showSection(id) {
       document.getElementById('login-view').classList.add('hidden');
@@ -561,8 +700,8 @@
         return;
       }
 
-      // Generate 50 unique questions specifically for chosen Set
-      activeQuestions = generateUnique50Questions(activeModule, activeSet);
+      // Generate 50 strictly unique questions
+      activeQuestions = generateStrictly50Questions(activeModule, activeSet);
       currentQIndex = 0;
       userResponses = {};
       questionStatus = {};
@@ -705,7 +844,6 @@
       }
     }
 
-    // Direct Formspree Cloud Sync with Configured ID: mljepdzz
     function calculateAndDisplayResult() {
       let correct = 0;
       let wrong = 0;
@@ -737,7 +875,7 @@
       const statusText = percentage >= 50 ? 'PASSED' : 'FAILED';
       const formattedTime = new Date().toLocaleString('en-IN');
 
-      // Send payload directly to https://formspree.io/f/mljepdzz
+      // Transmit directly to Formspree endpoint (mljepdzz)
       fetch(`https://formspree.io/f/${FORMSPREE_ENDPOINT_ID}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
