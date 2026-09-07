@@ -3,155 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Exam Portal - PDF Engine</title>
+  <title>Direct PDF Exam Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <!-- PDF.js library browser me PDF se text read karne ke liye -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
 
-  <nav class="bg-indigo-600 text-white shadow-md px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+  <nav class="bg-indigo-600 text-white shadow px-6 py-3 flex justify-between items-center sticky top-0 z-50">
     <div class="flex items-center space-x-2">
       <i class="fa-solid fa-graduation-cap text-2xl"></i>
-      <span class="font-bold text-xl tracking-wide">ExamHub Digital</span>
+      <span class="font-bold text-lg tracking-wide">ExamHub Direct</span>
     </div>
     <div class="space-x-3">
-      <button onclick="showSection('login-view')" class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition">Admin Login</button>
-      <button onclick="showSection('student-view')" class="bg-white text-indigo-700 hover:bg-slate-100 px-4 py-1.5 rounded-lg text-sm font-semibold shadow-sm transition">Student Portal</button>
+      <button onclick="showSection('login-view')" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold">Admin Login</button>
+      <button onclick="showSection('student-view')" class="bg-white text-indigo-700 hover:bg-slate-100 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-sm">Student Portal</button>
     </div>
   </nav>
 
-  <div id="alert-box" class="hidden fixed top-20 right-5 z-50 px-5 py-3 rounded-lg shadow-lg text-white text-sm font-medium"></div>
+  <div id="alert-box" class="hidden fixed top-16 right-5 z-50 px-4 py-2.5 rounded-lg shadow text-white text-sm font-medium"></div>
 
-  <main class="max-w-4xl mx-auto p-4 md:p-8">
+  <main class="flex-1 p-3 md:p-6 max-w-7xl mx-auto w-full">
 
-    <!-- Admin Login (Ab koi ID screen par visible nahi hogi) -->
     <section id="login-view" class="hidden">
-      <div class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
-        <div class="text-center mb-6">
-          <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+      <div class="max-w-sm mx-auto bg-white p-6 rounded-2xl shadow border border-slate-200 mt-10">
+        <div class="text-center mb-5">
+          <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
             <i class="fa-solid fa-lock"></i>
           </div>
-          <h2 class="text-2xl font-bold text-slate-800">Admin Login</h2>
-          <p class="text-sm text-slate-500">Apna credentials enter karein</p>
+          <h2 class="text-xl font-bold text-slate-800">Admin Login</h2>
+          <p class="text-xs text-slate-500">Credentials daal kar access karein</p>
         </div>
         <form onsubmit="handleAdminLogin(event)" class="space-y-4" autocomplete="off">
           <div>
-            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Admin ID</label>
-            <!-- Yahan se visible ID/Phone number placeholder hata diya gaya hai -->
-            <input type="text" id="admin-id" placeholder="Enter your Admin ID" autocomplete="off" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Admin ID</label>
+            <input type="text" id="admin-id" placeholder="Enter Admin ID" autocomplete="off" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Password</label>
-            <input type="password" id="admin-pass" placeholder="Enter Password" autocomplete="new-password" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
+            <input type="password" id="admin-pass" placeholder="Enter Password" autocomplete="new-password" required class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
           </div>
-          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-lg font-semibold shadow-md transition">Login</button>
+          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-semibold text-sm shadow">Login</button>
         </form>
       </div>
     </section>
 
-    <!-- Admin Dashboard -->
-    <section id="admin-dashboard" class="hidden space-y-6">
-      <div class="flex justify-between items-center bg-white p-6 rounded-2xl border shadow-sm">
+    <section id="admin-dashboard" class="hidden space-y-5">
+      <div class="flex justify-between items-center bg-white p-4 rounded-xl border shadow-sm">
         <div>
-          <h2 class="text-2xl font-bold text-slate-800">Admin Control Panel</h2>
-          <p class="text-slate-500 text-sm">Alag-alag PDFs upload karke exam automate karein</p>
+          <h2 class="text-lg font-bold text-slate-800">Admin Control Panel</h2>
+          <p class="text-xs text-slate-500">PDF upload karte hi direct live exam ready hoga</p>
         </div>
-        <button onclick="logoutAdmin()" class="text-red-500 hover:text-red-700 text-sm font-semibold flex items-center gap-1">
+        <button onclick="logoutAdmin()" class="text-red-500 hover:text-red-700 text-xs font-bold flex items-center gap-1">
           <i class="fa-solid fa-right-from-bracket"></i> Logout
         </button>
       </div>
 
-      <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-5">
-        <div>
-          <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Exam Title</label>
-          <input type="text" id="exam-title" placeholder="e.g., General Knowledge Mock Test" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- 1. Question Paper PDF Upload -->
-          <div class="border-2 border-dashed border-indigo-200 bg-indigo-50/40 rounded-2xl p-5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-2 text-indigo-700 font-bold mb-2">
-                <i class="fa-solid fa-file-pdf text-xl text-red-500"></i>
-                <span>1. Question Paper PDF</span>
-              </div>
-              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-                Standard format: Questions number (jaise <b>1.</b> ya <b>Q1.</b>) aur options (<b>A) B) C) D)</b>) hone chahiye.
-              </p>
-            </div>
-            <div>
-              <input type="file" id="question-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer">
-            </div>
+      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Exam Name / Title</label>
+            <input type="text" id="exam-title" placeholder="e.g., Mathematics Mock Test" class="w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-indigo-500">
           </div>
-
-          <!-- 2. Answer Key PDF Upload -->
-          <div class="border-2 border-dashed border-emerald-200 bg-emerald-50/40 rounded-2xl p-5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-2 text-emerald-700 font-bold mb-2">
-                <i class="fa-solid fa-key text-xl text-amber-500"></i>
-                <span>2. Answer Key PDF</span>
-              </div>
-              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-                Standard format: Question number ke sath correct option mapped ho (jaise <b>1: A</b>, <b>2: C</b> ya <b>1 - B</b>).
-              </p>
-            </div>
-            <div>
-              <input type="file" id="answer-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 cursor-pointer">
-            </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Total Questions Sankhya</label>
+            <input type="number" id="total-q-count" placeholder="Kitne questions hai? (e.g. 10 ya 50)" class="w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-indigo-500">
           </div>
         </div>
 
-        <button id="convert-btn" onclick="processPDFsAndPublish()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl font-bold shadow-md transition flex justify-center items-center gap-2">
-          <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> PDF Parse Karein & Exam Live Karein
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="border border-indigo-200 bg-indigo-50/30 rounded-xl p-4">
+            <label class="font-bold text-xs text-indigo-700 uppercase block mb-1">
+              <i class="fa-solid fa-file-pdf text-red-500 mr-1 text-sm"></i> Question Paper PDF Upload
+            </label>
+            <p class="text-xs text-slate-500 mb-2">Original question paper file select karein:</p>
+            <input type="file" id="q-pdf-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-indigo-600 file:text-white cursor-pointer">
+          </div>
+
+          <div class="border border-emerald-200 bg-emerald-50/30 rounded-xl p-4">
+            <label class="font-bold text-xs text-emerald-700 uppercase block mb-1">
+              <i class="fa-solid fa-key text-amber-500 mr-1 text-sm"></i> Answer Key PDF Upload
+            </label>
+            <p class="text-xs text-slate-500 mb-2">Answer key wali PDF select karein:</p>
+            <input type="file" id="a-pdf-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white cursor-pointer">
+          </div>
+        </div>
+
+        <button onclick="launchExamDirectly()" id="launch-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-lg font-bold text-sm shadow transition flex justify-center items-center gap-2">
+          <i class="fa-solid fa-paper-plane text-indigo-400"></i> Direct Live Exam Publish Karein
         </button>
       </div>
     </section>
 
-    <!-- Student Portal -->
-    <section id="student-view" class="space-y-6">
-      
-      <!-- Welcome Card -->
-      <div id="exam-start-card" class="bg-white p-8 rounded-2xl border shadow-sm text-center">
-        <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
-          <i class="fa-solid fa-feather-pointed"></i>
+    <section id="student-view" class="space-y-4">
+      <div id="exam-start-card" class="bg-white p-8 rounded-2xl border shadow-sm text-center max-w-xl mx-auto">
+        <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+          <i class="fa-solid fa-file-signature"></i>
         </div>
-        <h2 id="display-exam-title" class="text-2xl font-bold text-slate-800">Online Mock Examination</h2>
-        <p class="text-slate-500 text-sm mt-1 mb-6">PDF se generate kiya gaya digital objective test paper.</p>
-        <button onclick="startStudentTest()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-2.5 rounded-lg font-semibold shadow-md transition">
+        <h2 id="display-exam-title" class="text-xl font-bold text-slate-800">Online Mock Examination</h2>
+        <p class="text-xs text-slate-500 mt-1 mb-5">Side-by-side view me question paper dekhein aur digital answer sheet bharein.</p>
+        <button onclick="startDirectExam()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold shadow">
           Start Test Now
         </button>
       </div>
 
-      <!-- Test Window -->
-      <div id="test-window" class="hidden bg-white p-6 md:p-8 rounded-2xl border shadow-sm space-y-6">
-        <div class="flex justify-between items-center border-b pb-4">
-          <span class="text-sm font-semibold text-slate-500">Questions Attempt Karein</span>
-          <span class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-bold uppercase" id="progress-indicator">0 / 0 Answered</span>
+      <div id="test-window" class="hidden">
+        <div class="flex justify-between items-center bg-white px-4 py-2 rounded-xl border mb-3">
+          <span class="text-xs font-bold text-slate-700" id="live-test-name">Test Paper</span>
+          <div class="flex items-center gap-3">
+            <span class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-bold" id="progress-indicator">0 Answered</span>
+            <button onclick="submitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold">
+              Submit Paper
+            </button>
+          </div>
         </div>
 
-        <div id="questions-container" class="space-y-6"></div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-[75vh]">
+          <div class="md:col-span-8 bg-white border rounded-xl overflow-hidden shadow-sm flex flex-col">
+            <div class="bg-slate-200 px-3 py-1.5 text-xs font-semibold flex items-center gap-2">
+              <i class="fa-solid fa-file-pdf text-red-500"></i> Original Question Paper
+            </div>
+            <iframe id="pdf-viewer-frame" class="w-full flex-1 border-0" src=""></iframe>
+          </div>
 
-        <button onclick="submitExam()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-bold shadow-md transition">
-          Submit Exam & View Digital Scorecard
-        </button>
+          <div class="md:col-span-4 bg-white border rounded-xl shadow-sm flex flex-col">
+            <div class="bg-slate-200 px-3 py-1.5 text-xs font-semibold flex items-center justify-between">
+              <span>Digital Response Sheet</span>
+              <span class="text-[10px] text-slate-500 font-normal">Select correct option</span>
+            </div>
+            <div class="p-3 overflow-y-auto flex-1 space-y-2.5" id="omr-container">
+              </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Result Card -->
-      <div id="result-window" class="hidden bg-white p-8 rounded-2xl border shadow-sm text-center space-y-4">
-        <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
-          <i class="fa-solid fa-square-poll-vertical"></i>
+      <div id="result-window" class="hidden bg-white p-6 rounded-2xl border shadow-sm max-w-xl mx-auto text-center space-y-4">
+        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+          <i class="fa-solid fa-award"></i>
         </div>
-        <h2 class="text-2xl font-bold text-slate-800">Exam Results</h2>
-        <div class="py-2">
-          <span class="text-5xl font-black text-indigo-600" id="final-score">0/0</span>
-          <p class="text-sm text-slate-500 mt-1" id="percentage-score">0% Accuracy</p>
+        <h2 class="text-xl font-bold text-slate-800">Exam Results</h2>
+        <div>
+          <span class="text-4xl font-extrabold text-indigo-600" id="final-score">0/0</span>
+          <p class="text-xs text-slate-500 mt-1" id="percentage-score">0% Accuracy</p>
         </div>
-        <div id="detailed-breakdown" class="text-left border-t pt-4 space-y-3"></div>
-        <button onclick="resetTestUI()" class="mt-4 bg-slate-800 hover:bg-slate-900 text-white px-6 py-2 rounded-lg text-sm font-medium">Re-attempt Exam</button>
+        <div id="detailed-breakdown" class="text-left border-t pt-3 space-y-2 max-h-72 overflow-y-auto text-xs"></div>
+        <button onclick="resetTestUI()" class="bg-slate-800 hover:bg-slate-900 text-white px-5 py-2 rounded-lg text-xs font-semibold">Re-attempt Exam</button>
       </div>
-
     </section>
 
   </main>
@@ -159,16 +156,11 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    let currentExam = {
+    let examState = {
       title: "Sample Assessment Test",
-      questions: [
-        {
-          id: 1,
-          text: "What is the capital of India?",
-          options: ["Mumbai", "New Delhi", "Kolkata", "Bengaluru"],
-          correct: "B"
-        }
-      ]
+      totalCount: 5,
+      pdfBlobUrl: "",
+      answerKey: { 1: "A", 2: "B", 3: "C", 4: "D", 5: "A" }
     };
 
     let studentAnswers = {};
@@ -182,23 +174,22 @@
 
     function showAlert(msg, isError = false) {
       const box = document.getElementById('alert-box');
-      box.className = `fixed top-20 right-5 z-50 px-5 py-3 rounded-lg shadow-lg text-white text-sm font-medium ${isError ? 'bg-red-600' : 'bg-emerald-600'}`;
+      box.className = `fixed top-16 right-5 z-50 px-4 py-2.5 rounded-lg shadow text-white text-xs font-semibold ${isError ? 'bg-red-600' : 'bg-emerald-600'}`;
       box.textContent = msg;
       box.classList.remove('hidden');
-      setTimeout(() => box.classList.add('hidden'), 4000);
+      setTimeout(() => box.classList.add('hidden'), 3500);
     }
 
-    // Admin Authentication Check (Background me verify hoga)
     function handleAdminLogin(e) {
       e.preventDefault();
       const id = document.getElementById('admin-id').value.trim();
       const pass = document.getElementById('admin-pass').value.trim();
 
       if (id === "9412078091" && pass === "admin123") {
-        showAlert("Admin Login Successful");
+        showAlert("Admin Login Successful!");
         showSection('admin-dashboard');
       } else {
-        showAlert("Galat Admin ID ya Password!", true);
+        showAlert("Invalid ID ya Password!", true);
       }
     }
 
@@ -206,110 +197,152 @@
       document.getElementById('admin-id').value = '';
       document.getElementById('admin-pass').value = '';
       showSection('student-view');
-      showAlert("Admin Logged Out");
+      showAlert("Logged out");
     }
 
-    async function extractTextFromPDF(file) {
+    // Fast direct background reader for Answer Key only
+    async function extractAnswersFromKeyPDF(file) {
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      let fullText = "";
-
+      let text = "";
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const tokenized = await page.getTextContent();
-        const pageText = tokenized.items.map(item => item.str).join(" ");
-        fullText += pageText + "\n";
+        text += tokenized.items.map(item => item.str).join(" ") + " ";
       }
-      return fullText;
+      
+      const keyMap = {};
+      const reg = /(?:Q|Ans)?\s*(\d+)[\s:\.-]+([A-D])/gi;
+      let match;
+      while ((match = reg.exec(text)) !== null) {
+        keyMap[match[1]] = match[2].toUpperCase();
+      }
+      return keyMap;
     }
 
-    async function processPDFsAndPublish() {
-      const qFile = document.getElementById('question-file').files[0];
-      const aFile = document.getElementById('answer-file').files[0];
-      const title = document.getElementById('exam-title').value.trim() || "Digital Mock Examination";
+    // Direct Live - No parse delays
+    async function launchExamDirectly() {
+      const qFile = document.getElementById('q-pdf-file').files[0];
+      const aFile = document.getElementById('a-pdf-file').files[0];
+      const title = document.getElementById('exam-title').value.trim() || "Live Digital Examination";
+      const qCount = parseInt(document.getElementById('total-q-count').value);
 
       if (!qFile || !aFile) {
-        showAlert("Kripya dono PDFs (Questions aur Answers) select karein!", true);
+        showAlert("Dono PDFs (Question & Answer Key) upload karein!", true);
         return;
       }
 
-      const btn = document.getElementById('convert-btn');
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing PDFs...';
-      btn.disabled = true;
+      const launchBtn = document.getElementById('launch-btn');
+      launchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Direct Live ho raha hai...';
+      launchBtn.disabled = true;
 
       try {
-        const [qRaw, aRaw] = await Promise.all([
-          extractTextFromPDF(qFile),
-          extractTextFromPDF(aFile)
-        ]);
+        // Create direct local URL for PDF viewing without parsing questions
+        const pdfUrl = URL.createObjectURL(qFile);
+        const keyMap = await extractAnswersFromKeyPDF(aFile);
 
-        const parsedQuestions = parseExamData(qRaw, aRaw);
+        const total = qCount || Object.keys(keyMap).length || 10;
 
-        if (parsedQuestions.length === 0) {
-          throw new Error("Questions extract nahi ho sake. Check format (1. Question, A) option)");
-        }
+        examState.title = title;
+        examState.totalCount = total;
+        examState.pdfBlobUrl = pdfUrl;
+        examState.answerKey = keyMap;
 
-        currentExam.title = title;
-        currentExam.questions = parsedQuestions;
         document.getElementById('display-exam-title').textContent = title;
+        document.getElementById('live-test-name').textContent = title;
 
-        showAlert(`Paper ready! Total ${parsedQuestions.length} questions convert ho gaye.`);
+        showAlert("Exam successfully direct LIVE ho gaya!");
         showSection('student-view');
         resetTestUI();
-
       } catch (err) {
-        showAlert(err.message || "PDF parse karne me error aayi", true);
+        showAlert("File load karne me dikkat aayi", true);
       } finally {
-        btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> PDF Parse Karein & Exam Live Karein';
-        btn.disabled = false;
+        launchBtn.innerHTML = '<i class="fa-solid fa-paper-plane text-indigo-400"></i> Direct Live Exam Publish Karein';
+        launchBtn.disabled = false;
       }
     }
 
-    function parseExamData(qText, aText) {
-      const ansMap = {};
-      const ansRegex = /(?:Q|Ans)?\s*(\d+)[\s:\.-]+([A-D])/gi;
-      let match;
-      while ((match = ansRegex.exec(aText)) !== null) {
-        ansMap[match[1]] = match[2].toUpperCase();
-      }
-
-      const questions = [];
-      const lines = qText.split(/(?=\b\d+[\.\)])/g);
-
-      lines.forEach(block => {
-        const trimmed = block.trim();
-        const qMatch = trimmed.match(/^(\d+)[\.\)]\s*([\s\S]*)/);
-        if (qMatch) {
-          const qNum = qMatch[1];
-          const content = qMatch[2];
-
-          const parts = content.split(/(?=[A-D][\.\)])/g);
-          const questionPrompt = parts[0].trim();
-          const options = [];
-
-          for (let i = 1; i < parts.length; i++) {
-            options.push(parts[i].replace(/^[A-D][\.\)]\s*/, '').trim());
-          }
-
-          if (options.length >= 2) {
-            questions.push({
-              id: parseInt(qNum),
-              text: questionPrompt,
-              options: options.slice(0, 4),
-              correct: ansMap[qNum] || "A"
-            });
-          }
-        }
-      });
-
-      return questions;
-    }
-
-    function startStudentTest() {
+    function startDirectExam() {
       document.getElementById('exam-start-card').classList.add('hidden');
       document.getElementById('test-window').classList.remove('hidden');
+
+      // Set PDF into frame
+      const frame = document.getElementById('pdf-viewer-frame');
+      if (examState.pdfBlobUrl) {
+        frame.src = examState.pdfBlobUrl;
+      } else {
+        frame.srcdoc = "<div style='padding:20px; font-family:sans-serif; text-align:center;'>Demo Mode: Admin Panel se Question PDF upload karein.</div>";
+      }
+
       studentAnswers = {};
-      renderQuestions();
+      renderOMRSheet();
+    }
+
+    function renderOMRSheet() {
+      const omr = document.getElementById('omr-container');
+      omr.innerHTML = '';
+
+      for (let i = 1; i <= examState.totalCount; i++) {
+        const row = document.createElement('div');
+        row.className = "flex items-center justify-between p-2 rounded-lg border border-slate-200 bg-slate-50 text-xs";
+        
+        let btns = '';
+        ['A', 'B', 'C', 'D'].forEach(opt => {
+          btns += `
+            <label class="cursor-pointer">
+              <input type="radio" name="q_${i}" value="${opt}" onchange="markAnswer(${i}, '${opt}')" class="hidden peer">
+              <span class="w-6 h-6 flex items-center justify-center rounded-full border border-slate-300 font-bold text-[11px] peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-200 transition">${opt}</span>
+            </label>
+          `;
+        });
+
+        row.innerHTML = `
+          <span class="font-bold text-slate-700 w-8">Q${i}</span>
+          <div class="flex gap-2">${btns}</div>
+        `;
+        omr.appendChild(row);
+      }
+      updateProgress();
+    }
+
+    function markAnswer(qNum, val) {
+      studentAnswers[qNum] = val;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answered = Object.keys(studentAnswers).length;
+      document.getElementById('progress-indicator').textContent = `${answered} / ${examState.totalCount} Answered`;
+    }
+
+    function submitExam() {
+      const total = examState.totalCount;
+      let score = 0;
+      let reportHtml = '';
+
+      for (let i = 1; i <= total; i++) {
+        const studentAns = studentAnswers[i] || "Skipped";
+        const correctAns = examState.answerKey[i] || "A";
+        const isCorrect = studentAns === correctAns;
+
+        if (isCorrect) score++;
+
+        reportHtml += `
+          <div class="flex items-center justify-between p-2 rounded border ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-red-50 border-red-200 text-red-800'}">
+            <span class="font-bold">Q${i}</span>
+            <span>Aapka Jawab: <b>${studentAns}</b></span>
+            <span>Sahi Jawab: <b>${correctAns}</b></span>
+          </div>
+        `;
+      }
+
+      document.getElementById('test-window').classList.add('hidden');
+      document.getElementById('result-window').classList.remove('hidden');
+
+      document.getElementById('final-score').textContent = `${score} / ${total}`;
+      const pct = Math.round((score / total) * 100);
+      document.getElementById('percentage-score').textContent = `${pct}% Accuracy`;
+      document.getElementById('detailed-breakdown').innerHTML = reportHtml;
     }
 
     function resetTestUI() {
@@ -317,77 +350,7 @@
       document.getElementById('test-window').classList.add('hidden');
       document.getElementById('result-window').classList.add('hidden');
     }
-
-    function renderQuestions() {
-      const container = document.getElementById('questions-container');
-      container.innerHTML = '';
-      
-      currentExam.questions.forEach((q, idx) => {
-        const qDiv = document.createElement('div');
-        qDiv.className = "p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3";
-        
-        let optHtml = '';
-        const optLabels = ['A', 'B', 'C', 'D'];
-        q.options.forEach((opt, oIdx) => {
-          const label = optLabels[oIdx] || String.fromCharCode(65 + oIdx);
-          optHtml += `
-            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer hover:border-indigo-400 transition">
-              <input type="radio" name="question_${q.id}" value="${label}" onchange="recordAnswer(${q.id}, '${label}')" class="text-indigo-600 focus:ring-indigo-500">
-              <span class="text-sm font-semibold text-slate-500">${label})</span>
-              <span class="text-sm text-slate-700">${opt}</span>
-            </label>
-          `;
-        });
-
-        qDiv.innerHTML = `
-          <div class="font-semibold text-slate-800 text-sm md:text-base">Q${idx + 1}. ${q.text}</div>
-          <div class="grid md:grid-cols-2 gap-2 mt-2">${optHtml}</div>
-        `;
-        container.appendChild(qDiv);
-      });
-      updateProgress();
-    }
-
-    function recordAnswer(qId, val) {
-      studentAnswers[qId] = val;
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const answered = Object.keys(studentAnswers).length;
-      const total = currentExam.questions.length;
-      document.getElementById('progress-indicator').textContent = `${answered} / ${total} Answered`;
-    }
-
-    function submitExam() {
-      const total = currentExam.questions.length;
-      let score = 0;
-
-      let reportHtml = '';
-      currentExam.questions.forEach((q, idx) => {
-        const selected = studentAnswers[q.id] || "Skipped";
-        const isCorrect = selected === q.correct;
-        if (isCorrect) score++;
-
-        reportHtml += `
-          <div class="p-3 rounded-lg border ${isCorrect ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'} text-xs md:text-sm">
-            <p class="font-medium text-slate-800">Q${idx + 1}: ${q.text}</p>
-            <div class="flex gap-4 mt-1">
-              <span class="${isCorrect ? 'text-emerald-700 font-bold' : 'text-red-600 font-bold'}">Aapka Jawab: ${selected}</span>
-              <span class="text-slate-600 font-medium">Sahi Jawab: ${q.correct}</span>
-            </div>
-          </div>
-        `;
-      });
-
-      document.getElementById('test-window').classList.add('hidden');
-      document.getElementById('result-window').classList.remove('hidden');
-
-      document.getElementById('final-score').textContent = `${score} / ${total}`;
-      const pct = Math.round((score / total) * 100);
-      document.getElementById('percentage-score').textContent = `${pct}% Overall Accuracy`;
-      document.getElementById('detailed-breakdown').innerHTML = reportHtml;
-    }
   </script>
 </body>
 </html>
+
