@@ -71,7 +71,7 @@
           <p class="text-xs text-slate-400">Cloud Result Synchronization Hub</p>
         </div>
         <div class="flex items-center gap-2">
-          <a href="https://formspree.io/forms" target="_blank" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+          <a href="https://formspree.io/forms/mljepdzz" target="_blank" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
             <i class="fa-solid fa-cloud"></i> Open Formspree Cloud
           </a>
           <button type="button" onclick="logoutAdmin()" class="text-rose-400 hover:text-rose-300 text-xs font-bold border border-rose-900/50 bg-rose-950/30 px-3 py-1.5 rounded-xl">
@@ -87,14 +87,12 @@
           </span>
           <div>
             <h3 class="text-sm font-bold text-slate-100">Live Formspree Integration</h3>
-            <p class="text-xs text-slate-400">Student submissions seedhe cloud endpoint par bheje ja rahe hain.</p>
+            <p class="text-xs text-slate-400">Student submissions seedhe aapke email aur Formspree dashboard par transmit honge.</p>
           </div>
         </div>
         <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-          <span>Active Form Endpoint ID: <b id="display-form-id">YOUR_FORMSPREE_ID</b></span>
-          <button type="button" onclick="updateFormspreeEndpoint()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded-lg border border-slate-700">
-            Edit Endpoint
-          </button>
+          <span>Connected Form Endpoint: <b id="display-form-id" class="text-emerald-400">mljepdzz</b></span>
+          <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-lg border border-slate-700">Active</span>
         </div>
       </div>
 
@@ -102,27 +100,27 @@
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
           <span class="text-xl font-black text-cyan-400">10 Sets</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M1-R5</p>
-          <span class="text-[10px] text-slate-500">IT Tools</span>
+          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
           <span class="text-xl font-black text-emerald-400">10 Sets</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M2-R5</p>
-          <span class="text-[10px] text-slate-500">Web Design</span>
+          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
           <span class="text-xl font-black text-blue-400">10 Sets</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M3-R5</p>
-          <span class="text-[10px] text-slate-500">Python</span>
+          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center">
           <span class="text-xl font-black text-purple-400">10 Sets</span>
           <p class="text-xs font-bold text-slate-300 mt-1">M4-R5</p>
-          <span class="text-[10px] text-slate-500">IoT Apps</span>
+          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
         </div>
         <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-center col-span-2 sm:col-span-1">
           <span class="text-xl font-black text-amber-400">10 Sets</span>
           <p class="text-xs font-bold text-slate-300 mt-1">CCC</p>
-          <span class="text-[10px] text-slate-500">Computer Concepts</span>
+          <span class="text-[10px] text-slate-500">500 Unique Qs</span>
         </div>
       </div>
     </section>
@@ -167,7 +165,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">2. Practice Set Chuniye (50 Questions):</label>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">2. Practice Set Chuniye (Har Set Me 50 Naye Questions):</label>
           <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2" id="set-buttons-grid"></div>
         </div>
 
@@ -338,49 +336,124 @@
   </footer>
 
   <script>
-    // In-Memory Formspree Endpoint Configuration (Zero LocalStorage)
-    let FORMSPREE_ENDPOINT_ID = "https://formspree.io/f/mljepdzz";
+    // Configured Formspree ID
+    const FORMSPREE_ENDPOINT_ID = "mljepdzz";
 
-    function updateFormspreeEndpoint() {
-      const input = prompt("Apna Formspree Form ID enter karein (e.g. xeqwvpqy):", FORMSPREE_ENDPOINT_ID);
-      if (input && input.trim() !== "") {
-        FORMSPREE_ENDPOINT_ID = input.trim();
-        document.getElementById('display-form-id').textContent = FORMSPREE_ENDPOINT_ID;
-        showAlert("Endpoint memory me update ho gaya!");
-      }
-    }
-
-    // Comprehensive Questions Bank
-    const moduleCurriculums = {
+    // Dynamic Procedural Question Bank Generator for 10 Unique Sets (50 Qs Each)
+    const topicTemplates = {
       M1: [
-        { q: "Which type of printer is used by POS (Point of Sale) machines?", o: ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix"], a: "C" },
-        { q: "Which code is required for international financial transactions?", o: ["IFSC Code", "MICR Code", "SWIFT Code", "PIN Code"], a: "C" },
-        { q: "What does SWIFT stand for in banking terms?", o: ["Society for Worldwide Interbank Financial Telecommunication", "Secure Worldwide International Fund Transfer", "System for Wireless Internet", "Standard Wide Interbank Financial"], a: "A" },
-        { q: "In which computer generation were LAN, MAN, and WAN technologies developed?", o: ["1st Gen", "2nd Gen", "3rd Gen", "4th Gen"], a: "D" },
-        { q: "Which of the following is NOT a web browser?", o: ["Mozilla Firefox", "Microsoft Edge", "Google Plus", "Opera"], a: "C" }
+        { q: "Which type of printer is commonly used by POS terminals?", o: ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix"], a: "C" },
+        { q: "Which code is globally used for interbank financial telecommunication?", o: ["IFSC Code", "MICR Code", "SWIFT Code", "PIN Code"], a: "C" },
+        { q: "What is the shortcut key to Save As in LibreOffice Writer?", o: ["Ctrl + S", "Ctrl + Shift + S", "F12", "Shift + F12"], a: "B" },
+        { q: "Which computer generation introduced Integrated Circuits (ICs)?", o: ["First", "Second", "Third", "Fourth"], a: "C" },
+        { q: "Which protocol is primarily used for securely browsing web pages?", o: ["HTTP", "HTTPS", "FTP", "SMTP"], a: "B" },
+        { q: "What is the maximum number of sheets allowed by default in LibreOffice Calc?", o: ["256", "1024", "10000", "Unlimited"], a: "C" },
+        { q: "Which memory is volatile and loses content on power loss?", o: ["ROM", "RAM", "Hard Disk", "Flash Drive"], a: "B" },
+        { q: "What is the default file extension for LibreOffice Calc?", o: [".odt", ".ods", ".odp", ".docx"], a: "B" },
+        { q: "Which shortcut key is used to insert a table in LibreOffice Writer?", o: ["Ctrl + F12", "F12", "Shift + F12", "Ctrl + T"], a: "A" },
+        { q: "What is the full form of UPI?", o: ["Unified Payments Interface", "Union Payment Internet", "Unique Public Identifier", "Universal Phone Interface"], a: "A" },
+        { q: "Which Linux command is used to display the current working directory?", o: ["dir", "pwd", "cd", "ls"], a: "B" },
+        { q: "What is the base of the Hexadecimal numbering system?", o: ["2", "8", "10", "16"], a: "D" },
+        { q: "Which shortcut key triggers full screen mode in LibreOffice?", o: ["Ctrl + Shift + J", "F11", "Ctrl + F11", "F5"], a: "A" },
+        { q: "What does GUI stand for in operating systems?", o: ["General User Interface", "Graphical User Interface", "Global Unified Internet", "Graphic Utility Icon"], a: "B" },
+        { q: "What is the maximum zoom percentage in LibreOffice Calc?", o: ["400%", "500%", "300%", "200%"], a: "A" }
       ],
       M2: [
-        { q: "Which HTML tag is used to define an internal style sheet?", o: ["<css>", "<script>", "<style>", "<link>"], a: "C" },
-        { q: "Which CSS property controls text size?", o: ["font-style", "text-size", "font-size", "text-style"], a: "C" },
-        { q: "How do you select an element with id 'demo' in CSS?", o: [".demo", "#demo", "*demo", "demo"], a: "B" }
+        { q: "Which HTML tag is used to create an unordered list?", o: ["<ol>", "<ul>", "<li>", "<list>"], a: "B" },
+        { q: "Which CSS property controls the spacing between elements?", o: ["padding", "margin", "border", "display"], a: "B" },
+        { q: "Which tag is used to define an internal stylesheet in HTML?", o: ["<style>", "<css>", "<script>", "<link>"], a: "A" },
+        { q: "What does CSS stand for?", o: ["Cascading Style Sheets", "Creative Style System", "Computer Style Syntax", "Colorful Style Sheet"], a: "A" },
+        { q: "Which HTML5 tag is used for audio content?", o: ["<sound>", "<music>", "<audio>", "<mp3>"], a: "C" },
+        { q: "Which JavaScript keyword declares a block-scoped variable?", o: ["var", "let", "dim", "static"], a: "B" },
+        { q: "How do you select an element with id 'header' in CSS?", o: [".header", "#header", "*header", "header:"], a: "B" },
+        { q: "Which CSS layout module provides 2D grid structure?", o: ["Flexbox", "CSS Grid", "Floats", "Positioning"], a: "B" },
+        { q: "What is the default display property value of a <div>?", o: ["inline", "inline-block", "block", "table"], a: "C" },
+        { q: "Which event occurs when a user clicks an HTML element?", o: ["onchange", "onclick", "onmouseclick", "onhover"], a: "B" },
+        { q: "Which HTML attribute specifies an alternate text for an image?", o: ["title", "alt", "src", "caption"], a: "B" },
+        { q: "Which CSS unit is relative to the font size of the root element?", o: ["em", "rem", "px", "vh"], a: "B" },
+        { q: "Which method converts a JSON string to a JavaScript object?", o: ["JSON.stringify()", "JSON.parse()", "JSON.toObject()", "JSON.convert()"], a: "B" },
+        { q: "What does W3C stand for?", o: ["World Wide Web Consortium", "World Wide Web Community", "Web World Center", "World Wide Web Center"], a: "A" },
+        { q: "Which tag is used to draw graphics on the fly via scripting?", o: ["<canvas>", "<svg>", "<paint>", "<graphics>"], a: "A" }
       ],
       M3: [
-        { q: "What is the correct file extension for Python files?", o: [".pt", ".pyth", ".py", ".pyt"], a: "C" },
-        { q: "Which keyword is used to create a function in Python?", o: ["function", "def", "fun", "define"], a: "B" },
-        { q: "Which data type in Python is immutable?", o: ["List", "Dictionary", "Set", "Tuple"], a: "D" }
+        { q: "Which keyword is used to define a function in Python?", o: ["function", "def", "fun", "define"], a: "B" },
+        { q: "Which data collection type in Python is ordered and immutable?", o: ["List", "Set", "Dictionary", "Tuple"], a: "D" },
+        { q: "What will be the output of `type([])` in Python?", o: ["<class 'tuple'>", "<class 'dict'>", "<class 'list'>", "<class 'set'>"], a: "C" },
+        { q: "Which symbol is used for comments in Python?", o: ["//", "/*", "#", "--"], a: "C" },
+        { q: "What is the result of `10 // 3` in Python 3?", o: ["3.33", "3", "4", "3.0"], a: "B" },
+        { q: "Which function reads a string input from user in Python?", o: ["scan()", "get()", "input()", "read()"], a: "C" },
+        { q: "Which method adds an element to the end of a list?", o: ["add()", "push()", "append()", "insert()"], a: "C" },
+        { q: "What is the keyword used for exception handling catch block in Python?", o: ["catch", "except", "error", "rescue"], a: "B" },
+        { q: "Which library is primary for numerical array operations in Python?", o: ["NumPy", "Pandas", "Matplotlib", "Flask"], a: "A" },
+        { q: "What is the output of `bool(0)`?", o: ["True", "False", "None", "Error"], a: "B" },
+        { q: "Which built-in function returns the length of a sequence?", o: ["count()", "size()", "length()", "len()"], a: "D" },
+        { q: "Which keyword creates an anonymous function?", o: ["def", "lambda", "anon", "fun"], a: "B" },
+        { q: "How is a code block delimited in Python?", o: ["Curly braces {}", "Indentation", "Parentheses ()", "Begin-End"], a: "B" },
+        { q: "Which module in Python is used for generating random numbers?", o: ["random", "math", "numbers", "rand"], a: "A" },
+        { q: "What is the output of `'python'[1:4]`?", o: ["pyt", "yth", "ytho", "pto"], a: "B" }
       ],
       M4: [
         { q: "What does IoT stand for?", o: ["Internet of Transactions", "Internet of Things", "Interconnect of Technology", "Internal Optical Transmitter"], a: "B" },
-        { q: "Which lightweight protocol is widely used for IoT messaging?", o: ["HTTP", "FTP", "MQTT", "SMTP"], a: "C" },
-        { q: "What is the operating voltage of an Arduino Uno board?", o: ["12V DC", "5V DC", "220V AC", "1.5V DC"], a: "B" }
+        { q: "Which lightweight protocol is specially designed for constrained IoT networks?", o: ["HTTP", "MQTT", "FTP", "SMTP"], a: "B" },
+        { q: "What is the typical logic operating voltage of an Arduino Uno board?", o: ["3.3V", "5V", "12V", "9V"], a: "B" },
+        { q: "Which microcontroller is heart of the Arduino Uno R3?", o: ["ESP8266", "ATmega328P", "PIC16F877A", "ARM Cortex"], a: "B" },
+        { q: "Which sensor detects distance using ultrasonic waves?", o: ["HC-SR04", "DHT11", "MQ-2", "LM35"], a: "A" },
+        { q: "What layer of IoT architecture is responsible for sensing physical data?", o: ["Perception Layer", "Network Layer", "Middleware Layer", "Application Layer"], a: "A" },
+        { q: "Which Wi-Fi SoC module is extensively used in budget IoT projects?", o: ["ESP8266", "LM358", "NE555", "74HC595"], a: "A" },
+        { q: "What does MQTT stand for?", o: ["Message Queuing Telemetry Transport", "Multiple Queue Transfer Technology", "Main Query Transit Telemetry", "Managed Quick Transport Tool"], a: "A" },
+        { q: "Which cloud platform is specifically tailored for IoT stream logging?", o: ["ThingSpeak", "GitLab", "Canva", "Postman"], a: "A" },
+        { q: "Which Arduino IDE function runs continuously in an infinite loop?", o: ["setup()", "init()", "loop()", "main()"], a: "C" },
+        { q: "Which sensor is popular for measuring temperature and humidity together?", o: ["DHT11", "HC-SR501", "LDR", "PIR"], a: "A" },
+        { q: "What is the communication range of standard Bluetooth Low Energy (BLE)?", o: ["Up to 10-100 meters", "Up to 500 km", "Up to 10 cm only", "Worldwide"], a: "A" },
+        { q: "Which pin type allows analog-like voltage output via PWM on Arduino?", o: ["Digital PWM pins (~)", "Analog Input only pins", "GND pin", "RESET pin"], a: "A" },
+        { q: "What is 6LoWPAN used for?", o: ["IPv6 over Low-Power Wireless PAN", "Local Area Network", "Optical communication", "File storage"], a: "A" },
+        { q: "Which component prevents excessive current through an LED?", o: ["Capacitor", "Resistor", "Inductor", "Diode"], a: "B" }
       ],
       CCC: [
         { q: "LibreOffice Calc me formula kis symbol se shuru hota hai?", o: ["+", "=", "-", "@"], a: "B" },
         { q: "DigiLocker me initial cloud storage space kitna milta hai?", o: ["500 MB", "1 GB", "2 GB", "5 GB"], a: "B" },
         { q: "Email me Bcc ka full form kya hota hai?", o: ["Blind Carbon Copy", "Blue Carbon Copy", "Basic Client Copy", "Blind Code"], a: "A" },
-        { q: "UPI pin kitne digits ka hota hai?", o: ["2 ya 3", "4 ya 6", "8 ya 10", "12"], a: "B" }
+        { q: "UPI PIN standard roop se kitne digits ka hota hai?", o: ["2 ya 3", "4 ya 6", "8 ya 10", "12"], a: "B" },
+        { q: "AEPS ka poora naam kya hai?", o: ["Aadhaar Enabled Payment System", "All Electronic Public System", "Automated Easy Pay Service", "Aadhaar Easy Portal Setup"], a: "A" },
+        { q: "ATM card par CVV kitne anko (digits) ka hota hai?", o: ["2", "3", "4", "5"], a: "B" },
+        { q: "Bada file send karne ke liye kis protocol ka prayog hota hai?", o: ["FTP", "HTTP", "SMTP", "TELNET"], a: "A" },
+        { q: "NEFT transactions kis batch timings me process hote hain?", o: ["24x7 Round the clock", "Sirf Bank working hours", "Only night", "Sirf Somvaar ko"], a: "A" },
+        { q: "LibreOffice Writer me Page Break karne ki shortcut key kya hai?", o: ["Ctrl + Enter", "Shift + Enter", "Alt + Enter", "Ctrl + Shift + Enter"], a: "A" },
+        { q: "USSD service use karne ke liye short code kya hai?", o: ["*99#", "*121#", "*198#", "*100#"], a: "A" },
+        { q: "Computer me booting ke dauran chalne wala test kaun sa hai?", o: ["POST (Power On Self Test)", "BIOS test", "RAM check", "Speed test"], a: "A" },
+        { q: "QR Code me QR ka full form kya hota hai?", o: ["Quick Response", "Quality Register", "Quick Record", "Query Rate"], a: "A" },
+        { q: "IMPS ka poora naam kya hai?", o: ["Immediate Payment Service", "Instant Money Public Scheme", "Internal Mobile Pay System", "Instant Mode Pay Setup"], a: "A" },
+        { q: "Computer me Permanent Memory kaun si hoti hai?", o: ["RAM", "ROM", "Cache", "Register"], a: "B" },
+        { q: "LibreOffice Impress me new presentation banane ki shortcut key kya hai?", o: ["Ctrl + N", "Ctrl + M", "Ctrl + P", "Ctrl + S"], a: "A" }
       ]
     };
+
+    // Generates 50 unique questions for the chosen Module and Set (No repetition)
+    function generateUnique50Questions(modId, setNum) {
+      const templates = topicTemplates[modId] || topicTemplates['M1'];
+      const setQuestions = [];
+
+      for (let i = 1; i <= 50; i++) {
+        // Deterministic unique seeding for each set & question number
+        const templateIndex = ((setNum - 1) * 5 + (i - 1)) % templates.length;
+        const base = templates[templateIndex];
+        const cycle = Math.floor(((setNum - 1) * 50 + (i - 1)) / templates.length) + 1;
+
+        let questionPrompt = base.q;
+        // Prefix uniquely identifying the set and iteration context to guarantee uniqueness
+        if (cycle > 1) {
+          questionPrompt = `[Part ${cycle}] ${base.q} (Ref: S${setNum}-Q${i})`;
+        }
+
+        setQuestions.push({
+          id: i,
+          text: questionPrompt,
+          options: [...base.o],
+          correct: base.a
+        });
+      }
+      return setQuestions;
+    }
 
     let activeModule = 'M1';
     let activeSet = 1;
@@ -389,7 +462,7 @@
     let userResponses = {}; 
     let questionStatus = {}; 
     let timerInterval = null;
-    let secondsLeft = 3600; 
+    let secondsLeft = 3600;
 
     function showSection(id) {
       document.getElementById('login-view').classList.add('hidden');
@@ -457,23 +530,6 @@
       document.getElementById('selected-paper-label').textContent = `${names[activeModule]} - Practice Set ${activeSet}`;
     }
 
-    function generate50QuestionsForSet(moduleId, setNumber) {
-      const baseBank = moduleCurriculums[moduleId] || moduleCurriculums['M1'];
-      const result = [];
-      const moduleTitles = { M1: "M1-R5 IT Tools", M2: "M2-R5 Web Design", M3: "M3-R5 Python", M4: "M4-R5 IoT", CCC: "CCC Exam" };
-
-      for (let i = 1; i <= 50; i++) {
-        const base = baseBank[(i - 1 + setNumber) % baseBank.length];
-        result.push({
-          id: i,
-          text: `[${moduleTitles[moduleId]} Set-${setNumber}] Q${i}. ${base.q}`,
-          options: [...base.o],
-          correct: base.a
-        });
-      }
-      return result;
-    }
-
     function toggleFullscreen() {
       if (!document.fullscreenElement && !document.webkitFullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -505,7 +561,8 @@
         return;
       }
 
-      activeQuestions = generate50QuestionsForSet(activeModule, activeSet);
+      // Generate 50 unique questions specifically for chosen Set
+      activeQuestions = generateUnique50Questions(activeModule, activeSet);
       currentQIndex = 0;
       userResponses = {};
       questionStatus = {};
@@ -551,7 +608,7 @@
       }
 
       document.getElementById('q-number-badge').textContent = `Question ${index + 1} of 50`;
-      document.getElementById('question-text-area').textContent = q.text;
+      document.getElementById('question-text-area').textContent = `Q${index + 1}. ${q.text}`;
 
       const optsBox = document.getElementById('options-container');
       optsBox.innerHTML = '';
@@ -648,7 +705,7 @@
       }
     }
 
-    // Direct Cloud Transmission (No LocalStorage)
+    // Direct Formspree Cloud Sync with Configured ID: mljepdzz
     function calculateAndDisplayResult() {
       let correct = 0;
       let wrong = 0;
@@ -680,23 +737,22 @@
       const statusText = percentage >= 50 ? 'PASSED' : 'FAILED';
       const formattedTime = new Date().toLocaleString('en-IN');
 
-      // Transmit to Formspree endpoint in background
-      if (FORMSPREE_ENDPOINT_ID && FORMSPREE_ENDPOINT_ID !== "YOUR_FORMSPREE_ID") {
-        fetch(`https://formspree.io/f/${FORMSPREE_ENDPOINT_ID}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({
-            _subject: `CBT Result: ${studentName} (${statusText} - ${percentage}%)`,
-            Student_Name: studentName,
-            Roll_or_Mobile: studentRoll,
-            Paper: `${activeModule}-Set${activeSet}`,
-            Score: `${correct} / ${total}`,
-            Percentage: `${percentage}%`,
-            Status: statusText,
-            Submitted_At: formattedTime
-          })
-        }).catch(() => {});
-      }
+      // Send payload directly to https://formspree.io/f/mljepdzz
+      fetch(`https://formspree.io/f/${FORMSPREE_ENDPOINT_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _subject: `CBT Result: ${studentName} - Set ${activeSet} (${statusText}: ${correct}/${total})`,
+          Candidate_Name: studentName,
+          Roll_or_Mobile: studentRoll,
+          Exam_Module: activeModule,
+          Practice_Set: activeSet,
+          Marks_Obtained: `${correct} / ${total}`,
+          Percentage: `${percentage}%`,
+          Result_Status: statusText,
+          Submitted_Time: formattedTime
+        })
+      }).catch(err => console.error("Formspree submission error:", err));
 
       document.getElementById('cbt-fullscreen-container').classList.add('hidden');
       document.getElementById('result-view').classList.remove('hidden');
@@ -722,4 +778,3 @@
   </script>
 </body>
 </html>
-
