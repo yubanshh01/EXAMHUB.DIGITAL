@@ -7,9 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col select-none">
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between select-none">
 
-  <!-- Top Navbar -->
+  <!-- Top Header / Navbar -->
   <header class="bg-slate-900 text-white px-5 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
     <div class="flex items-center space-x-3">
       <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-lg text-white shadow">O</div>
@@ -27,6 +27,7 @@
     </div>
   </header>
 
+  <!-- Alert Banner -->
   <div id="alert-box" class="hidden fixed top-16 right-5 z-50 px-4 py-2.5 rounded-lg shadow-lg text-white text-xs font-semibold"></div>
 
   <!-- Main Container -->
@@ -58,7 +59,7 @@
       </div>
     </section>
 
-    <!-- 2. ADMIN DASHBOARD VIEW (NO PDF UPLOAD) -->
+    <!-- 2. ADMIN DASHBOARD VIEW -->
     <section id="admin-dashboard" class="hidden space-y-4 max-w-4xl mx-auto">
       <div class="flex justify-between items-center bg-white p-4 rounded-xl border shadow-sm">
         <div>
@@ -94,7 +95,6 @@
         </div>
       </div>
 
-      <!-- Live Custom Question Editor (Optional direct update) -->
       <div class="bg-white p-6 rounded-xl border shadow-sm space-y-3">
         <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Live Database Status</h3>
         <p class="text-xs text-slate-500">
@@ -109,10 +109,10 @@
       </div>
     </section>
 
-    <!-- 3. STUDENT PORTAL (MODULE & SET SELECTOR + CBT SCREEN) -->
+    <!-- 3. STUDENT PORTAL (SELECTION & TEST SCREEN) -->
     <section id="student-view" class="space-y-4">
       
-      <!-- Module & Practice Set Selection Screen -->
+      <!-- Selection Screen -->
       <div id="selection-card" class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-2xl border shadow-sm space-y-6">
         <div class="text-center">
           <h2 class="text-2xl font-extrabold text-slate-800">NIELIT O-Level Practice Test Portal</h2>
@@ -141,9 +141,7 @@
         <!-- Practice Set Selector (1 to 10) -->
         <div>
           <label class="block text-xs font-bold text-slate-600 uppercase mb-2">2. Practice Set Select Karein (Har set me 50 Questions):</label>
-          <div class="grid grid-cols-5 md:grid-cols-10 gap-2" id="set-buttons-grid">
-            <!-- 1 to 10 Buttons -->
-          </div>
+          <div class="grid grid-cols-5 md:grid-cols-10 gap-2" id="set-buttons-grid"></div>
         </div>
 
         <!-- Start Exam CTA -->
@@ -157,13 +155,12 @@
         </div>
       </div>
 
-      <!-- TRUE CBT INTERFACE (NO PDF, SINGLE QUESTION DISPLAY) -->
+      <!-- TRUE CBT INTERFACE (1 QUESTION AT A TIME) -->
       <div id="cbt-screen" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-4 h-[82vh]">
         
-        <!-- Left: Question & Options Panel (8 Cols) -->
+        <!-- Left: Question & Options Panel -->
         <div class="lg:col-span-8 bg-white border rounded-xl shadow-sm flex flex-col overflow-hidden">
           
-          <!-- Question Top Bar -->
           <div class="bg-slate-50 border-b px-5 py-3 flex justify-between items-center">
             <span class="text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-md" id="q-number-badge">
               Question 1 of 50
@@ -171,17 +168,13 @@
             <span class="text-xs font-medium text-slate-500">Marks: +1.0 | Negative: 0.0</span>
           </div>
 
-          <!-- Question Content Area -->
           <div class="flex-1 p-5 md:p-8 overflow-y-auto space-y-6">
             <div id="question-text-area" class="text-slate-800 text-base md:text-lg font-medium leading-relaxed whitespace-pre-line border-b pb-4">
               Loading Question...
             </div>
-
-            <!-- 4 Options -->
             <div class="space-y-3" id="options-container"></div>
           </div>
 
-          <!-- Action Footer Controls -->
           <div class="bg-slate-50 border-t p-3.5 px-5 flex flex-wrap gap-2 justify-between items-center">
             <div class="flex gap-2">
               <button type="button" onclick="prevQuestion()" class="bg-white border hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold shadow-sm">
@@ -203,19 +196,17 @@
 
         </div>
 
-        <!-- Right: 50 Questions Palette Grid (4 Cols) -->
+        <!-- Right: 50 Questions Palette Grid -->
         <div class="lg:col-span-4 bg-white border rounded-xl shadow-sm flex flex-col overflow-hidden">
           
           <div class="bg-slate-50 border-b p-3 px-4">
             <h3 class="text-xs font-bold text-slate-700 uppercase">Question Palette (50 Questions)</h3>
           </div>
 
-          <!-- Number Matrix Grid (1 to 50) -->
           <div class="flex-1 p-4 overflow-y-auto">
             <div class="grid grid-cols-5 gap-2" id="palette-grid"></div>
           </div>
 
-          <!-- Submit Box -->
           <div class="p-4 border-t bg-slate-50 space-y-2">
             <div class="flex justify-between text-[11px] text-slate-500">
               <span>Attempted: <b id="stat-attempted" class="text-emerald-600 font-bold">0</b></span>
@@ -240,7 +231,6 @@
           <p class="text-xs text-slate-500 mt-0.5" id="res-paper-title">NIELIT O-Level Practice Set</p>
         </div>
 
-        <!-- Score Metrics -->
         <div class="grid grid-cols-3 gap-3 bg-slate-50 p-4 rounded-xl border">
           <div>
             <span class="text-3xl font-black text-indigo-600" id="res-score">0 / 50</span>
@@ -256,7 +246,6 @@
           </div>
         </div>
 
-        <!-- Detailed Question-wise Review -->
         <div class="text-left">
           <h3 class="text-xs font-bold text-slate-700 uppercase mb-2">Detailed Answer Key Analysis</h3>
           <div class="max-h-72 overflow-y-auto space-y-2 pr-1" id="detailed-results-list"></div>
@@ -270,6 +259,39 @@
     </section>
 
   </main>
+
+  <!-- Professional Footer with Creator & Contact Details -->
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 mt-12 py-8 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      
+      <!-- Brand & Project Info -->
+      <div class="text-center md:text-left space-y-1">
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <span class="w-7 h-7 rounded-md bg-indigo-600 text-white flex items-center justify-center font-bold text-xs">HC</span>
+          <span class="text-white font-bold text-base tracking-wide">HarshCode Studio</span>
+        </div>
+        <p class="text-xs text-slate-400">Designed & Developed by <span class="text-indigo-400 font-semibold">Harsh Chaudhary Tomar</span></p>
+        <p class="text-[11px] text-slate-500">Bilari, Moradabad, Uttar Pradesh, India</p>
+      </div>
+
+      <!-- Contact & Social Details -->
+      <div class="flex flex-wrap justify-center items-center gap-4 text-xs">
+        <a href="tel:9412078091" class="flex items-center gap-2 text-slate-300 hover:text-white transition bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          <i class="fa-solid fa-phone text-indigo-400"></i> +91 9412078091
+        </a>
+        <a href="https://instagram.com/yubanshh_chaudhary01" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-white transition bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          <i class="fa-brands fa-instagram text-pink-400"></i> @yubanshh_chaudhary01
+        </a>
+      </div>
+
+      <!-- Copyright Notice -->
+      <div class="text-center md:text-right text-xs text-slate-500">
+        <p>&copy; 2026 HarshCode Studio. All Rights Reserved.</p>
+        <p class="text-[10px] text-slate-600 mt-0.5">Online Examination & Assessment Engine</p>
+      </div>
+
+    </div>
+  </footer>
 
   <script>
     // ==========================================
@@ -326,7 +348,6 @@
       ]
     };
 
-    // Auto generator to ensure 50 rigorous standard questions per set
     function generate50QuestionsForSet(moduleId, setNumber) {
       const baseBank = moduleCurriculums[moduleId];
       const result = [];
@@ -351,10 +372,10 @@
     let activeSet = 1;
     let activeQuestions = [];
     let currentQIndex = 0;
-    let userResponses = {}; // { 1: 'B', 2: 'A' }
-    let questionStatus = {}; // { 1: 'answered' | 'unanswered' | 'review' }
+    let userResponses = {}; 
+    let questionStatus = {}; 
     let timerInterval = null;
-    let secondsLeft = 3600; // 60 mins
+    let secondsLeft = 3600; 
 
     // ==========================================
     // 3. UI NAVIGATION & AUTH
@@ -379,7 +400,6 @@
       const id = document.getElementById('admin-id').value.trim();
       const pass = document.getElementById('admin-pass').value.trim();
 
-      // Requested Credentials: ID: admin | Password: admin123
       if (id === "admin" && pass === "admin123") {
         showAlert("Admin Access Granted!");
         showSection('admin-dashboard');
@@ -456,7 +476,7 @@
 
     function startTimer() {
       clearInterval(timerInterval);
-      secondsLeft = 3600; // 60 minutes
+      secondsLeft = 3600; 
       updateTimerDisplay();
       timerInterval = setInterval(() => {
         secondsLeft--;
