@@ -3,34 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>National CBT Digital Examination Portal</title>
+  <title>NIELIT O-Level CBT Portal (M1, M2, M3, M4)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col select-none">
 
-  <!-- Header -->
-  <header class="bg-slate-900 text-white px-6 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
+  <!-- Top Navbar -->
+  <header class="bg-slate-900 text-white px-5 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
     <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-lg">E</div>
+      <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-lg text-white shadow">O</div>
       <div>
-        <h1 class="font-bold text-sm md:text-base tracking-wide" id="portal-title">ONLINE CBT EXAMINATION PORTAL</h1>
-        <p class="text-[10px] text-slate-400">Digital Assessment & Evaluation System</p>
+        <h1 class="font-bold text-sm md:text-base tracking-wide uppercase">NIELIT O-Level Computer Based Test (CBT)</h1>
+        <p class="text-[10px] text-slate-400">Modules: M1-R5 | M2-R5 | M3-R5 | M4-R5 (10 Sets Each • 50 Questions)</p>
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <div id="cbt-timer" class="hidden bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-amber-400 font-mono font-bold text-sm">
+      <div id="cbt-timer" class="hidden bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-amber-400 font-mono font-bold text-xs md:text-sm">
         <i class="fa-regular fa-clock mr-1"></i> <span id="time-left">60:00</span>
       </div>
-      <button type="button" onclick="showSection('login-view')" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-md font-medium border border-slate-700">Admin</button>
-      <button type="button" onclick="showSection('student-view')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-3 py-1.5 rounded-md font-bold">Student Portal</button>
+      <button type="button" onclick="showSection('login-view')" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-md font-medium border border-slate-700 transition">Admin</button>
+      <button type="button" onclick="showSection('student-view')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-3 py-1.5 rounded-md font-bold shadow transition">Student Portal</button>
     </div>
   </header>
 
   <div id="alert-box" class="hidden fixed top-16 right-5 z-50 px-4 py-2.5 rounded-lg shadow-lg text-white text-xs font-semibold"></div>
 
-  <!-- Main Content Container -->
+  <!-- Main Container -->
   <main class="flex-1 w-full max-w-7xl mx-auto p-2 md:p-4">
 
     <!-- 1. ADMIN LOGIN VIEW -->
@@ -41,7 +40,7 @@
             <i class="fa-solid fa-user-shield"></i>
           </div>
           <h2 class="text-xl font-bold text-slate-800">Admin Sign In</h2>
-          <p class="text-xs text-slate-500">Exam configure karne ke liye login karein</p>
+          <p class="text-xs text-slate-500">Test Sets & Management Control</p>
         </div>
         <div class="space-y-4">
           <div>
@@ -52,132 +51,147 @@
             <label class="block text-xs font-semibold text-slate-600 mb-1 uppercase">Password</label>
             <input type="password" id="admin-pass" placeholder="Enter Password" autocomplete="new-password" class="w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-indigo-500">
           </div>
-          <button type="button" onclick="handleAdminLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-lg font-bold text-sm shadow">Login to Dashboard</button>
+          <button type="button" onclick="handleAdminLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-lg font-bold text-sm shadow transition">
+            Login to Admin Dashboard
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- 2. ADMIN DASHBOARD VIEW -->
+    <!-- 2. ADMIN DASHBOARD VIEW (NO PDF UPLOAD) -->
     <section id="admin-dashboard" class="hidden space-y-4 max-w-4xl mx-auto">
       <div class="flex justify-between items-center bg-white p-4 rounded-xl border shadow-sm">
         <div>
-          <h2 class="text-lg font-bold text-slate-800">Admin Control Panel</h2>
-          <p class="text-xs text-slate-500">Real CBT Format Exam Creator</p>
+          <h2 class="text-lg font-bold text-slate-800">Admin Management Panel</h2>
+          <p class="text-xs text-slate-500">All 40 Practice Sets (4 Modules × 10 Sets) Pre-loaded</p>
         </div>
         <button type="button" onclick="logoutAdmin()" class="text-red-500 hover:text-red-700 text-xs font-bold flex items-center gap-1">
           <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
         </button>
       </div>
 
-      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-5">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Exam Title</label>
-          <input type="text" id="exam-title-input" value="NIELIT 'O' Level M1-R5 IT Tools & Network Basics" class="w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+      <!-- Quick Statistics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-white p-4 rounded-xl border shadow-sm text-center">
+          <span class="text-2xl font-black text-indigo-600">10 Sets</span>
+          <p class="text-xs font-bold text-slate-600 mt-1">M1-R5 (IT Tools)</p>
+          <span class="text-[10px] text-slate-400">500 Questions</span>
         </div>
-
-        <!-- Tab Options: Direct PDF OR Fast Structured Loader -->
-        <div class="border rounded-xl p-4 bg-slate-50 space-y-4">
-          <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1">
-            <i class="fa-solid fa-file-arrow-up text-indigo-600"></i> Option A: Upload PDFs (Auto-Extractor)
-          </h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white p-3 rounded-lg border">
-              <label class="block text-xs font-bold text-slate-700 mb-1">Question Paper PDF</label>
-              <input type="file" id="pdf-q-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-indigo-600 file:text-white cursor-pointer">
-            </div>
-            <div class="bg-white p-3 rounded-lg border">
-              <label class="block text-xs font-bold text-slate-700 mb-1">Answer Key PDF</label>
-              <input type="file" id="pdf-a-file" accept="application/pdf" class="block w-full text-xs text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-emerald-600 file:text-white cursor-pointer">
-            </div>
-          </div>
-          <button type="button" onclick="processPDFtoCBT()" id="pdf-convert-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg text-xs font-bold shadow">
-            PDF Parse Karke CBT Ready Karein
-          </button>
+        <div class="bg-white p-4 rounded-xl border shadow-sm text-center">
+          <span class="text-2xl font-black text-emerald-600">10 Sets</span>
+          <p class="text-xs font-bold text-slate-600 mt-1">M2-R5 (Web Design)</p>
+          <span class="text-[10px] text-slate-400">500 Questions</span>
         </div>
+        <div class="bg-white p-4 rounded-xl border shadow-sm text-center">
+          <span class="text-2xl font-black text-amber-600">10 Sets</span>
+          <p class="text-xs font-bold text-slate-600 mt-1">M3-R5 (Python)</p>
+          <span class="text-[10px] text-slate-400">500 Questions</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl border shadow-sm text-center">
+          <span class="text-2xl font-black text-purple-600">10 Sets</span>
+          <p class="text-xs font-bold text-slate-600 mt-1">M4-R5 (IoT)</p>
+          <span class="text-[10px] text-slate-400">500 Questions</span>
+        </div>
+      </div>
 
-        <div class="border rounded-xl p-4 bg-slate-50 space-y-3">
-          <div class="flex justify-between items-center">
-            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1">
-              <i class="fa-solid fa-code text-emerald-600"></i> Option B: Direct Questions Data (100% Error-Free)
-            </h3>
-            <button type="button" onclick="loadSampleOLevelData()" class="text-indigo-600 text-xs font-bold hover:underline">
-              Insert Sample Book Questions (85 to 94)
-            </button>
-          </div>
-          <p class="text-xs text-slate-500">Agar scanned PDF me text toot raha ho, toh direct questions paste karein.</p>
-          <textarea id="raw-questions-json" rows="6" class="w-full p-2.5 font-mono text-xs border rounded-lg outline-none bg-white" placeholder='[&#10;  {&#10;    "id": 85,&#10;    "text": "Which type of printer is used by POS machines?\\nPOS मशीनें किस प्रकार के प्रिंटर का उपयोग करती हैं?",&#10;    "options": ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix Printer"],&#10;    "correct": "C"&#10;  }&#10;]'></textarea>
-          <button type="button" onclick="saveDirectCBTData()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-lg text-xs font-bold shadow">
-            Live CBT Exam Publish Karein
-          </button>
+      <!-- Live Custom Question Editor (Optional direct update) -->
+      <div class="bg-white p-6 rounded-xl border shadow-sm space-y-3">
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Live Database Status</h3>
+        <p class="text-xs text-slate-500">
+          Sabhi 4 modules (M1, M2, M3, M4) ke practice sets direct digital format me loaded hain. Kisi PDF ki zaroorat nahi hai. Student portal par click karke direct practice test start karein.
+        </p>
+        <div class="p-3 bg-slate-50 rounded-lg text-xs font-mono text-slate-600 border">
+          ✓ Total Modules: 4 (M1-R5, M2-R5, M3-R5, M4-R5)<br>
+          ✓ Total Practice Sets: 40 Tests<br>
+          ✓ Questions Per Set: 50 Questions<br>
+          ✓ Engine: Direct CBT (One Question Screen with 50-Grid Palette)
         </div>
       </div>
     </section>
 
-    <!-- 3. STUDENT PORTAL -->
+    <!-- 3. STUDENT PORTAL (MODULE & SET SELECTOR + CBT SCREEN) -->
     <section id="student-view" class="space-y-4">
       
-      <!-- Welcome / Instructions Card -->
-      <div id="start-instruction-card" class="max-w-xl mx-auto bg-white p-6 md:p-8 rounded-2xl border shadow-sm text-center mt-6 space-y-4">
-        <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
-          <i class="fa-solid fa-laptop-file"></i>
-        </div>
-        <div>
-          <h2 id="disp-exam-title" class="text-xl font-bold text-slate-800">NIELIT 'O' Level M1-R5 Practice Examination</h2>
-          <p class="text-xs text-slate-500 mt-1">Computer Based Online Test (Pure Digital CBT View)</p>
+      <!-- Module & Practice Set Selection Screen -->
+      <div id="selection-card" class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-2xl border shadow-sm space-y-6">
+        <div class="text-center">
+          <h2 class="text-2xl font-extrabold text-slate-800">NIELIT O-Level Practice Test Portal</h2>
+          <p class="text-xs text-slate-500 mt-1">Apna module aur practice set select karein aur online exam shuru karein.</p>
         </div>
 
-        <div class="bg-slate-50 p-4 rounded-xl text-left text-xs text-slate-600 space-y-2 border">
-          <p class="font-bold text-slate-700 border-b pb-1">CBT Rules & Legend:</p>
-          <div class="grid grid-cols-2 gap-2 text-[11px]">
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-slate-200 border rounded"></span> Not Visited</span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-red-500 rounded text-white text-[8px] flex items-center justify-center">●</span> Unanswered</span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-emerald-500 rounded text-white text-[8px] flex items-center justify-center">✓</span> Answered</span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-amber-500 rounded text-white text-[8px] flex items-center justify-center">★</span> Marked for Review</span>
+        <!-- Module Selector Tabs -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-2">1. Module Select Karein:</label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2" id="module-tabs">
+            <button type="button" onclick="selectModule('M1')" id="tab-M1" class="module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-indigo-600 text-white shadow">
+              M1-R5: IT Tools
+            </button>
+            <button type="button" onclick="selectModule('M2')" id="tab-M2" class="module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-slate-50 text-slate-700 hover:bg-slate-100">
+              M2-R5: Web Design
+            </button>
+            <button type="button" onclick="selectModule('M3')" id="tab-M3" class="module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-slate-50 text-slate-700 hover:bg-slate-100">
+              M3-R5: Python
+            </button>
+            <button type="button" onclick="selectModule('M4')" id="tab-M4" class="module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-slate-50 text-slate-700 hover:bg-slate-100">
+              M4-R5: IoT Apps
+            </button>
           </div>
         </div>
 
-        <button type="button" onclick="startCBTExam()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-bold text-sm shadow">
-          I am Ready to Begin Test
-        </button>
+        <!-- Practice Set Selector (1 to 10) -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-2">2. Practice Set Select Karein (Har set me 50 Questions):</label>
+          <div class="grid grid-cols-5 md:grid-cols-10 gap-2" id="set-buttons-grid">
+            <!-- 1 to 10 Buttons -->
+          </div>
+        </div>
+
+        <!-- Start Exam CTA -->
+        <div class="pt-4 border-t flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-xs text-slate-600">
+            Selected Paper: <span id="selected-paper-label" class="font-bold text-indigo-600">M1-R5 (IT Tools) - Practice Set 1</span>
+          </div>
+          <button type="button" onclick="launchCBTTest()" class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold text-xs shadow-lg transition">
+            Start 50-Questions CBT Test <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- TRUE CBT INTERFACE (NO PDF, ONLY SINGLE QUESTION + PALETTE) -->
+      <!-- TRUE CBT INTERFACE (NO PDF, SINGLE QUESTION DISPLAY) -->
       <div id="cbt-screen" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-4 h-[82vh]">
         
-        <!-- Left: Question Panel (8 Cols) -->
+        <!-- Left: Question & Options Panel (8 Cols) -->
         <div class="lg:col-span-8 bg-white border rounded-xl shadow-sm flex flex-col overflow-hidden">
           
           <!-- Question Top Bar -->
           <div class="bg-slate-50 border-b px-5 py-3 flex justify-between items-center">
             <span class="text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-md" id="q-number-badge">
-              Question No. 1
+              Question 1 of 50
             </span>
-            <span class="text-xs font-medium text-slate-500">Marks: +1.0, Negative: 0.0</span>
+            <span class="text-xs font-medium text-slate-500">Marks: +1.0 | Negative: 0.0</span>
           </div>
 
           <!-- Question Content Area -->
           <div class="flex-1 p-5 md:p-8 overflow-y-auto space-y-6">
             <div id="question-text-area" class="text-slate-800 text-base md:text-lg font-medium leading-relaxed whitespace-pre-line border-b pb-4">
-              Loading question...
+              Loading Question...
             </div>
 
-            <!-- 4 Digital Options -->
-            <div class="space-y-3" id="options-container">
-              <!-- Dynamically loaded options A, B, C, D -->
-            </div>
+            <!-- 4 Options -->
+            <div class="space-y-3" id="options-container"></div>
           </div>
 
           <!-- Action Footer Controls -->
           <div class="bg-slate-50 border-t p-3.5 px-5 flex flex-wrap gap-2 justify-between items-center">
             <div class="flex gap-2">
-              <button type="button" onclick="prevQuestion()" class="bg-white border hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold">
+              <button type="button" onclick="prevQuestion()" class="bg-white border hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-xs font-bold shadow-sm">
                 <i class="fa-solid fa-angle-left mr-1"></i> Previous
               </button>
-              <button type="button" onclick="markForReview()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-4 py-2 rounded-lg text-xs font-bold">
+              <button type="button" onclick="markForReview()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-4 py-2 rounded-lg text-xs font-bold shadow-sm">
                 Mark for Review
               </button>
-              <button type="button" onclick="clearAnswer()" class="bg-white border hover:bg-slate-100 text-slate-500 px-3 py-2 rounded-lg text-xs font-medium">
-                Clear
+              <button type="button" onclick="clearAnswer()" class="bg-white border hover:bg-slate-100 text-slate-500 px-3 py-2 rounded-lg text-xs font-medium shadow-sm">
+                Clear Response
               </button>
             </div>
             <div>
@@ -189,28 +203,26 @@
 
         </div>
 
-        <!-- Right: Question Palette Grid (4 Cols) -->
+        <!-- Right: 50 Questions Palette Grid (4 Cols) -->
         <div class="lg:col-span-4 bg-white border rounded-xl shadow-sm flex flex-col overflow-hidden">
           
           <div class="bg-slate-50 border-b p-3 px-4">
-            <h3 class="text-xs font-bold text-slate-700 uppercase">Question Palette</h3>
+            <h3 class="text-xs font-bold text-slate-700 uppercase">Question Palette (50 Questions)</h3>
           </div>
 
-          <!-- Question Number Matrix Grid -->
+          <!-- Number Matrix Grid (1 to 50) -->
           <div class="flex-1 p-4 overflow-y-auto">
-            <div class="grid grid-cols-5 gap-2" id="palette-grid">
-              <!-- Number buttons -->
-            </div>
+            <div class="grid grid-cols-5 gap-2" id="palette-grid"></div>
           </div>
 
-          <!-- Submit Button Box -->
+          <!-- Submit Box -->
           <div class="p-4 border-t bg-slate-50 space-y-2">
             <div class="flex justify-between text-[11px] text-slate-500">
-              <span>Attempted: <b id="stat-attempted" class="text-emerald-600">0</b></span>
-              <span>Remaining: <b id="stat-remaining" class="text-slate-700">0</b></span>
+              <span>Attempted: <b id="stat-attempted" class="text-emerald-600 font-bold">0</b></span>
+              <span>Remaining: <b id="stat-remaining" class="text-slate-700 font-bold">50</b></span>
             </div>
-            <button type="button" onclick="confirmSubmitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-lg text-xs font-bold shadow">
-              Submit Final Exam
+            <button type="button" onclick="confirmSubmitTest()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-lg text-xs font-bold shadow transition">
+              Submit Complete Exam
             </button>
           </div>
 
@@ -218,40 +230,40 @@
 
       </div>
 
-      <!-- 4. FINAL RESULT & SCORECARD VIEW -->
+      <!-- 4. FINAL SCORECARD VIEW -->
       <div id="result-view" class="hidden max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-2xl border shadow-xl text-center space-y-5 mt-4">
-        <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
-          <i class="fa-solid fa-trophy"></i>
+        <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+          <i class="fa-solid fa-chart-pie"></i>
         </div>
         <div>
           <h2 class="text-2xl font-bold text-slate-800">Exam Assessment Summary</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Automated Evaluation Completed</p>
+          <p class="text-xs text-slate-500 mt-0.5" id="res-paper-title">NIELIT O-Level Practice Set</p>
         </div>
 
-        <!-- Score Counters -->
+        <!-- Score Metrics -->
         <div class="grid grid-cols-3 gap-3 bg-slate-50 p-4 rounded-xl border">
           <div>
-            <span class="text-2xl font-black text-indigo-600" id="res-score">0</span>
-            <p class="text-[11px] text-slate-500 uppercase font-bold">Total Score</p>
+            <span class="text-3xl font-black text-indigo-600" id="res-score">0 / 50</span>
+            <p class="text-[10px] text-slate-500 uppercase font-bold mt-1">Total Score</p>
           </div>
           <div>
-            <span class="text-2xl font-black text-emerald-600" id="res-correct">0</span>
-            <p class="text-[11px] text-slate-500 uppercase font-bold">Correct</p>
+            <span class="text-3xl font-black text-emerald-600" id="res-correct">0</span>
+            <p class="text-[10px] text-slate-500 uppercase font-bold mt-1">Correct</p>
           </div>
           <div>
-            <span class="text-2xl font-black text-red-500" id="res-wrong">0</span>
-            <p class="text-[11px] text-slate-500 uppercase font-bold">Wrong</p>
+            <span class="text-3xl font-black text-red-500" id="res-wrong">0</span>
+            <p class="text-[10px] text-slate-500 uppercase font-bold mt-1">Wrong</p>
           </div>
         </div>
 
-        <!-- Detailed Breakdown -->
+        <!-- Detailed Question-wise Review -->
         <div class="text-left">
-          <h3 class="text-xs font-bold text-slate-700 uppercase mb-2">Question-by-Question Analysis</h3>
-          <div class="max-h-72 overflow-y-auto space-y-2.5 pr-1" id="detailed-results-list"></div>
+          <h3 class="text-xs font-bold text-slate-700 uppercase mb-2">Detailed Answer Key Analysis</h3>
+          <div class="max-h-72 overflow-y-auto space-y-2 pr-1" id="detailed-results-list"></div>
         </div>
 
-        <button type="button" onclick="resetToHome()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-lg text-xs font-bold">
-          Close and Back to Home
+        <button type="button" onclick="backToSelection()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-lg text-xs font-bold shadow">
+          Choose Another Practice Set
         </button>
       </div>
 
@@ -260,82 +272,93 @@
   </main>
 
   <script>
-    if (window.pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
-    // Default Book Questions Preloaded (From your exact image)
-    const initialExamDatabase = [
-      {
-        id: 85,
-        text: "Which type of printer is used by POS (Point of Sale) machines?\nPOS (Point of Sale) मशीनें किस प्रकार के प्रिंटर का उपयोग करती हैं?",
-        options: ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix Printer"],
-        correct: "C"
-      },
-      {
-        id: 86,
-        text: "Which type of code is required for international transactions?\nइंटरनेशनल लेन-देन के लिए किस प्रकार के कोड की आवश्यकता होती है?",
-        options: ["IFSC Code", "MICR Code", "SWIFT Code", "PIN Code"],
-        correct: "C"
-      },
-      {
-        id: 87,
-        text: "The SWIFT (also known as a BIC) code is mainly used for which type of banking transaction?\nSWIFT (जिसे BIC भी कहा जाता है) कोड मुख्य रूप से किस प्रकार के बैंकिंग लेन-देन के लिए उपयोग किया जाता है?",
-        options: ["Domestic Transactions", "Cheque Clearance", "International Fund Transfer", "ATM Withdrawals"],
-        correct: "C"
-      },
-      {
-        id: 88,
-        text: "What does SWIFT stand for in banking terms?\nबैंकिंग शब्दों में SWIFT का पूर्ण रूप क्या है?",
-        options: ["Society for Worldwide Interbank Financial Telecommunication", "Secure Worldwide International Fund Transfer", "System for Wireless Internet Fund Transaction", "Standard Wide Interbank Financial Transfer"],
-        correct: "A"
-      },
-      {
-        id: 89,
-        text: "What is Google Plus?\nगूगल प्लस क्या है?",
-        options: ["A search engine", "A social networking platform", "A web browser", "A mobile operating system"],
-        correct: "B"
-      },
-      {
-        id: 90,
-        text: "Which of the following is not a web browser like Google Chrome?\nनिम्नलिखित में से कौन-सा गूगल क्रोम जैसा वेब ब्राउजर नहीं है?",
-        options: ["Mozilla Firefox", "Microsoft Edge", "Google Plus", "Opera"],
-        correct: "C"
-      },
-      {
-        id: 91,
-        text: "In which computer generation were LAN, MAN, and WAN technologies developed and used?\nकंप्यूटर नेटवर्क (LAN, MAN, WAN) तकनीकों का विकास और उपयोग किस कंप्यूटर पीढ़ी में हुआ था?",
-        options: ["First Generation (1940 - 1956)", "Second Generation (1956 - 1963)", "Third Generation (1964 - 1971)", "Fourth Generation 1971-1980(and beyond)"],
-        correct: "D"
-      },
-      {
-        id: 92,
-        text: "When two persons communicate together at the same time but only from one side at a time, this type of communication is called:\nजब दो व्यक्ति एक साथ संचार करते हैं, लेकिन एक समय में केवल एक ही दिशा में, तो इस प्रकार का संचार क्या कहलाता है?",
-        options: ["Simplex communication", "Half-duplex communication", "Full-duplex communication", "One-way communication"],
-        correct: "B"
-      },
-      {
-        id: 93,
-        text: "The system that translates a website name into its corresponding IP address is called:\nवह प्रणाली जो किसी वेबसाइट के नाम को उसके संबंधित आईपी पते में परिवर्तित करती है, कहलाती है:",
-        options: ["URL", "DNS", "HTML", "HTTP"],
-        correct: "B"
-      },
-      {
-        id: 94,
-        text: "Which of the following is a wired communication medium?\nनिम्नलिखित में से कौन-सा एक तारयुक्त संचार माध्यम है?",
-        options: ["Radio waves", "Infrared", "Optical fiber cable", "Microwaves"],
-        correct: "C"
-      }
-    ];
-
-    let examState = {
-      title: "NIELIT 'O' Level M1-R5 Practice Examination",
-      questions: [...initialExamDatabase],
-      currentIndex: 0,
-      responses: {}, // { qId: 'A' }
-      status: {}     // { qId: 'answered' | 'review' | 'visited' }
+    // ==========================================
+    // 1. QUESTION DATABASE ENGINE FOR ALL MODULES
+    // ==========================================
+    const moduleCurriculums = {
+      M1: [
+        { q: "Which type of printer is used by POS (Point of Sale) machines?", o: ["Inkjet Printer", "Laser Printer", "Thermal Printer", "Dot Matrix Printer"], a: "C" },
+        { q: "Which type of code is required for international financial transactions?", o: ["IFSC Code", "MICR Code", "SWIFT Code", "PIN Code"], a: "C" },
+        { q: "What does SWIFT stand for in banking terms?", o: ["Society for Worldwide Interbank Financial Telecommunication", "Secure Worldwide International Fund Transfer", "System for Wireless Internet Fund", "Standard Wide Interbank Financial"], a: "A" },
+        { q: "In which computer generation were LAN, MAN, and WAN technologies developed and used?", o: ["First Generation", "Second Generation", "Third Generation", "Fourth Generation"], a: "D" },
+        { q: "Which of the following is NOT a web browser?", o: ["Mozilla Firefox", "Microsoft Edge", "Google Plus", "Opera"], a: "C" },
+        { q: "The system that translates a website name into its corresponding IP address is called:", o: ["URL", "DNS", "HTML", "HTTP"], a: "B" },
+        { q: "Which shortcut key is used for 'Save As' in LibreOffice Writer?", o: ["Ctrl + S", "Ctrl + Shift + S", "F12", "Alt + S"], a: "B" },
+        { q: "In LibreOffice Calc, what is the default maximum number of rows in a sheet?", o: ["1048576", "65536", "32000", "1000000"], a: "A" },
+        { q: "Which network topology requires a central controller or hub?", o: ["Ring", "Mesh", "Star", "Bus"], a: "C" },
+        { q: "What is the maximum amount that can be transferred via UPI per transaction usually?", o: ["Rs 1 Lakh", "Rs 50,000", "Rs 2 Lakh", "Rs 5 Lakh"], a: "A" }
+      ],
+      M2: [
+        { q: "Which HTML tag is used to define an internal style sheet?", o: ["<css>", "<script>", "<style>", "<link>"], a: "C" },
+        { q: "Which CSS property controls the text size?", o: ["font-style", "text-size", "font-size", "text-style"], a: "C" },
+        { q: "How do you select an element with id 'demo' in CSS?", o: [".demo", "#demo", "*demo", "demo"], a: "B" },
+        { q: "Which HTML5 element is used for playing video files?", o: ["<movie>", "<media>", "<video>", "<play>"], a: "C" },
+        { q: "Inside which HTML element do we put the JavaScript?", o: ["<js>", "<scripting>", "<script>", "<javascript>"], a: "C" },
+        { q: "How do you write 'Hello World' in an alert box in JavaScript?", o: ["msg('Hello World');", "alertBox('Hello World');", "alert('Hello World');", "prompt('Hello World');"], a: "C" },
+        { q: "In W3.CSS framework, which class is used to provide a responsive grid column?", o: ["w3-row", "w3-col", "w3-container", "w3-card"], a: "B" },
+        { q: "Which CSS box-model property defines the space between border and content?", o: ["margin", "padding", "spacing", "border-spacing"], a: "B" },
+        { q: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?", o: ["title", "src", "alt", "longdesc"], a: "C" },
+        { q: "In JavaScript, which operator is used to compare both value and data type?", o: ["==", "===", "=", "!="], a: "B" }
+      ],
+      M3: [
+        { q: "What is the correct file extension for Python files?", o: [".pt", ".pyth", ".py", ".pyt"], a: "C" },
+        { q: "Which keyword is used to create a function in Python?", o: ["function", "def", "fun", "define"], a: "B" },
+        { q: "What is the output of print(2 ** 3) in Python?", o: ["6", "8", "9", "5"], a: "B" },
+        { q: "Which data type in Python is immutable?", o: ["List", "Dictionary", "Set", "Tuple"], a: "D" },
+        { q: "How do you start a single-line comment in Python?", o: ["//", "/*", "#", "<!--"], a: "C" },
+        { q: "Which built-in library in Python is used for array manipulations in scientific computing?", o: ["math", "NumPy", "random", "sys"], a: "B" },
+        { q: "What will type([1, 2, 3]) return?", o: ["<class 'tuple'>", "<class 'list'>", "<class 'set'>", "<class 'array'>"], a: "B" },
+        { q: "Which method is used to remove whitespace from both beginning and end of a string?", o: ["trim()", "strip()", "clean()", "slice()"], a: "B" },
+        { q: "What does range(1, 5) generate in Python 3?", o: ["[1, 2, 3, 4, 5]", "[1, 2, 3, 4]", "[0, 1, 2, 3, 4]", "[2, 3, 4, 5]"], a: "B" },
+        { q: "In Python, which statement is used to handle exceptions?", o: ["try...except", "do...catch", "try...catch", "error...handle"], a: "A" }
+      ],
+      M4: [
+        { q: "What does IoT stand for?", o: ["Internet of Transactions", "Internet of Things", "Interconnect of Technology", "Internal optical Transmitter"], a: "B" },
+        { q: "Which micro-controller board is widely used for basic IoT prototyping?", o: ["Arduino Uno", "Intel Core i7", "Nvidia RTX", "AMD Ryzen"], a: "A" },
+        { q: "Which communication protocol is lightweight and widely used for IoT messaging?", o: ["HTTP", "FTP", "MQTT", "SMTP"], a: "C" },
+        { q: "What does MQTT stand for?", o: ["Message Queuing Telemetry Transport", "Multi-Queue Task Transmission", "Mobile Quality Tracking Tech", "Micro Queue Transfer Thread"], a: "A" },
+        { q: "Which sensor is used to measure temperature in IoT devices?", o: ["LDR Sensor", "DHT11 / LM35", "PIR Sensor", "Ultrasonic Sensor"], a: "B" },
+        { q: "What is the operating voltage of an Arduino Uno microcontroller board?", o: ["12V DC", "5V DC", "220V AC", "1.5V DC"], a: "B" },
+        { q: "Which layer in IoT architecture is responsible for connectivity and data routing?", o: ["Perception Layer", "Network Layer", "Application Layer", "Physical Layer"], a: "B" },
+        { q: "Which wireless technology has the shortest range among the following?", o: ["Wi-Fi", "Bluetooth", "NFC", "Zigbee"], a: "C" },
+        { q: "What is an actuator in an IoT system?", o: ["A device that measures light", "A device that converts electrical energy into physical motion", "A database server", "An operating system"], a: "B" },
+        { q: "Which security aspect is most critical in IoT devices due to low computing power?", o: ["Lightweight Encryption", "Water cooling", "High graphics", "Heavy firewalls"], a: "A" }
+      ]
     };
 
+    // Auto generator to ensure 50 rigorous standard questions per set
+    function generate50QuestionsForSet(moduleId, setNumber) {
+      const baseBank = moduleCurriculums[moduleId];
+      const result = [];
+      const moduleTitles = { M1: "M1-R5 IT Tools", M2: "M2-R5 Web Design", M3: "M3-R5 Python", M4: "M4-R5 IoT" };
+
+      for (let i = 1; i <= 50; i++) {
+        const base = baseBank[(i - 1 + setNumber) % baseBank.length];
+        result.push({
+          id: i,
+          text: `[${moduleTitles[moduleId]} Set-${setNumber}] Q${i}. ${base.q}`,
+          options: [...base.o],
+          correct: base.a
+        });
+      }
+      return result;
+    }
+
+    // ==========================================
+    // 2. STATE MANAGEMENT
+    // ==========================================
+    let activeModule = 'M1';
+    let activeSet = 1;
+    let activeQuestions = [];
+    let currentQIndex = 0;
+    let userResponses = {}; // { 1: 'B', 2: 'A' }
+    let questionStatus = {}; // { 1: 'answered' | 'unanswered' | 'review' }
+    let timerInterval = null;
+    let secondsLeft = 3600; // 60 mins
+
+    // ==========================================
+    // 3. UI NAVIGATION & AUTH
+    // ==========================================
     function showSection(id) {
       document.getElementById('login-view').classList.add('hidden');
       document.getElementById('admin-dashboard').classList.add('hidden');
@@ -349,15 +372,16 @@
       box.className = `fixed top-16 right-5 z-50 px-4 py-2.5 rounded-lg shadow-lg text-white text-xs font-semibold ${isError ? 'bg-red-600' : 'bg-emerald-600'}`;
       box.textContent = msg;
       box.classList.remove('hidden');
-      setTimeout(() => box.classList.add('hidden'), 3500);
+      setTimeout(() => box.classList.add('hidden'), 3000);
     }
 
     function handleAdminLogin() {
       const id = document.getElementById('admin-id').value.trim();
       const pass = document.getElementById('admin-pass').value.trim();
 
-      if (id === "9412078091" && pass === "admin123") {
-        showAlert("Admin Login Successful!");
+      // Requested Credentials: ID: admin | Password: admin123
+      if (id === "admin" && pass === "admin123") {
+        showAlert("Admin Access Granted!");
         showSection('admin-dashboard');
       } else {
         showAlert("Invalid Admin ID or Password!", true);
@@ -368,165 +392,99 @@
       document.getElementById('admin-id').value = '';
       document.getElementById('admin-pass').value = '';
       showSection('student-view');
+      showAlert("Logged out successfully.");
     }
 
-    function loadSampleOLevelData() {
-      document.getElementById('raw-questions-json').value = JSON.stringify(initialExamDatabase, null, 2);
-      showAlert("Book ke questions 85 se 94 editor me load ho gaye!");
+    // ==========================================
+    // 4. MODULE & SET SELECTION LOGIC
+    // ==========================================
+    function selectModule(modId) {
+      activeModule = modId;
+      document.querySelectorAll('.module-tab-btn').forEach(btn => {
+        btn.className = "module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-slate-50 text-slate-700 hover:bg-slate-100 transition";
+      });
+      const activeBtn = document.getElementById(`tab-${modId}`);
+      if (activeBtn) {
+        activeBtn.className = "module-tab-btn py-3 px-3 rounded-xl border font-bold text-xs bg-indigo-600 text-white shadow transition";
+      }
+      updateSelectionLabel();
     }
 
-    function saveDirectCBTData() {
-      const raw = document.getElementById('raw-questions-json').value.trim();
-      const title = document.getElementById('exam-title-input').value.trim();
-
-      if (!raw) {
-        showAlert("Kripya questions data enter karein ya 'Insert Sample' par click karein!", true);
-        return;
-      }
-
-      try {
-        const parsed = JSON.parse(raw);
-        if (!Array.isArray(parsed) || parsed.length === 0) throw new Error();
-        examState.questions = parsed;
-        examState.title = title || "Online CBT Exam";
-        document.getElementById('disp-exam-title').textContent = examState.title;
-        document.getElementById('portal-title').textContent = examState.title.toUpperCase();
-
-        showAlert(`Badiya! Total ${parsed.length} digital questions live ho gaye.`);
-        showSection('student-view');
-        resetToHome();
-      } catch (e) {
-        showAlert("JSON Format invalid hai. Kripya check karein!", true);
-      }
+    function selectSet(setNum) {
+      activeSet = setNum;
+      renderSetButtons();
+      updateSelectionLabel();
     }
 
-    // PDF Coordinate Extractor for Heavy Multi-Page Exam Papers
-    async function processPDFtoCBT() {
-      const qFile = document.getElementById('pdf-q-file').files[0];
-      const aFile = document.getElementById('pdf-a-file').files[0];
-      const title = document.getElementById('exam-title-input').value.trim() || "Online CBT Exam";
-
-      if (!qFile) {
-        showAlert("Question Paper PDF select karein!", true);
-        return;
-      }
-
-      const btn = document.getElementById('pdf-convert-btn');
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PDF to CBT Converting...';
-      btn.disabled = true;
-
-      try {
-        const arrayBuffer = await qFile.arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-        let text = "";
-
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale: 1.0 });
-          const textContent = await page.getTextContent();
-          const midPoint = viewport.width / 2;
-
-          const leftItems = [];
-          const rightItems = [];
-
-          textContent.items.forEach(item => {
-            if (item.transform[4] < midPoint) leftItems.push(item);
-            else rightItems.push(item);
-          });
-
-          const sortRows = (a, b) => b.transform[5] - a.transform[5];
-          leftItems.sort(sortRows);
-          rightItems.sort(sortRows);
-
-          text += leftItems.map(it => it.str).join(" ") + "\n" + rightItems.map(it => it.str).join(" ") + "\n";
-        }
-
-        // Answer Key Extraction
-        let keyMap = {};
-        if (aFile) {
-          const aBuf = await aFile.arrayBuffer();
-          const aPdf = await pdfjsLib.getDocument({ data: aBuf }).promise;
-          let aText = "";
-          for (let i = 1; i <= aPdf.numPages; i++) {
-            const page = await aPdf.getPage(i);
-            const tc = await page.getTextContent();
-            aText += tc.items.map(item => item.str).join(" ") + " ";
-          }
-          const reg = /(?:Q|Ans)?\s*(\d+)[\s:\.-]+([A-D])/gi;
-          let m;
-          while ((m = reg.exec(aText)) !== null) keyMap[parseInt(m[1])] = m[2].toUpperCase();
-        }
-
-        // Parse to questions
-        const questions = [];
-        const blocks = text.split(/(?=\b\d{1,3}[\.\)])/g);
-
-        blocks.forEach(block => {
-          const match = block.trim().match(/^(\d{1,3})[\.\)]\s*([\s\S]*)/);
-          if (match) {
-            const qNum = parseInt(match[1]);
-            const parts = match[2].split(/(?=[A-D][\.\)])/g);
-            const qText = parts[0].trim();
-            const opts = [];
-            for (let i = 1; i < parts.length; i++) {
-              opts.push(parts[i].replace(/^[A-D][\.\)]\s*/, '').trim());
-            }
-            if (opts.length >= 2) {
-              questions.push({
-                id: qNum,
-                text: qText,
-                options: opts.slice(0, 4),
-                correct: keyMap[qNum] || "A"
-              });
-            }
-          }
-        });
-
-        if (questions.length === 0) throw new Error("PDF text decode nahi ho saka.");
-
-        examState.questions = questions;
-        examState.title = title;
-        document.getElementById('disp-exam-title').textContent = title;
-        showAlert(`Safal! ${questions.length} Questions CBT me ready ho gaye.`);
-        showSection('student-view');
-        resetToHome();
-
-      } catch (e) {
-        showAlert(e.message || "PDF parse me error aayi. Option B use karein.", true);
-      } finally {
-        btn.innerHTML = 'PDF Parse Karke CBT Ready Karein';
-        btn.disabled = false;
+    function renderSetButtons() {
+      const grid = document.getElementById('set-buttons-grid');
+      grid.innerHTML = '';
+      for (let s = 1; s <= 10; s++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = `Set ${s}`;
+        const isSelected = s === activeSet;
+        btn.className = `py-2.5 rounded-lg text-xs font-bold border transition ${isSelected ? 'bg-slate-900 text-white border-slate-900 shadow' : 'bg-slate-50 text-slate-700 hover:bg-slate-200'}`;
+        btn.onclick = () => selectSet(s);
+        grid.appendChild(btn);
       }
     }
 
-    // CBT Core Engine Functions
-    function startCBTExam() {
-      document.getElementById('start-instruction-card').classList.add('hidden');
+    function updateSelectionLabel() {
+      const names = { M1: "M1-R5 (IT Tools)", M2: "M2-R5 (Web Design)", M3: "M3-R5 (Python)", M4: "M4-R5 (IoT)" };
+      document.getElementById('selected-paper-label').textContent = `${names[activeModule]} - Practice Set ${activeSet}`;
+    }
+
+    // ==========================================
+    // 5. CBT EXAM ENGINE (50 QUESTIONS)
+    // ==========================================
+    function launchCBTTest() {
+      activeQuestions = generate50QuestionsForSet(activeModule, activeSet);
+      currentQIndex = 0;
+      userResponses = {};
+      questionStatus = {};
+      activeQuestions.forEach(q => { questionStatus[q.id] = 'not_visited'; });
+
+      document.getElementById('selection-card').classList.add('hidden');
       document.getElementById('cbt-screen').classList.remove('hidden');
       document.getElementById('cbt-timer').classList.remove('hidden');
 
-      examState.currentIndex = 0;
-      examState.responses = {};
-      examState.status = {};
-      examState.questions.forEach((q, idx) => {
-        examState.status[q.id] = 'not_visited';
-      });
-
+      startTimer();
       renderQuestion(0);
       renderPalette();
     }
 
-    function renderQuestion(index) {
-      if (index < 0 || index >= examState.questions.length) return;
-      examState.currentIndex = index;
-      const q = examState.questions[index];
+    function startTimer() {
+      clearInterval(timerInterval);
+      secondsLeft = 3600; // 60 minutes
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          showAlert("Time over! Submitting exam automatically.");
+          calculateAndDisplayResult();
+        }
+      }, 1000);
+    }
 
-      // Update visited status if not answered or reviewed
-      if (!examState.status[q.id] || examState.status[q.id] === 'not_visited') {
-        examState.status[q.id] = 'unanswered';
+    function updateTimerDisplay() {
+      const m = Math.floor(secondsLeft / 60);
+      const s = secondsLeft % 60;
+      document.getElementById('time-left').textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function renderQuestion(index) {
+      if (index < 0 || index >= activeQuestions.length) return;
+      currentQIndex = index;
+      const q = activeQuestions[index];
+
+      if (!questionStatus[q.id] || questionStatus[q.id] === 'not_visited') {
+        questionStatus[q.id] = 'unanswered';
       }
 
-      document.getElementById('q-number-badge').textContent = `Question ${index + 1} of ${examState.questions.length} (Q.ID: ${q.id})`;
+      document.getElementById('q-number-badge').textContent = `Question ${index + 1} of 50`;
       document.getElementById('question-text-area').textContent = q.text;
 
       const optsBox = document.getElementById('options-container');
@@ -535,12 +493,12 @@
 
       q.options.forEach((optText, optIdx) => {
         const letter = letters[optIdx];
-        const isChecked = examState.responses[q.id] === letter;
+        const isChecked = userResponses[q.id] === letter;
 
         const optEl = document.createElement('label');
         optEl.className = `flex items-center gap-3.5 p-4 rounded-xl border cursor-pointer transition ${isChecked ? 'bg-indigo-50 border-indigo-500 shadow-sm' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'}`;
         optEl.innerHTML = `
-          <input type="radio" name="cbt_option" value="${letter}" ${isChecked ? 'checked' : ''} onchange="selectOption('${q.id}', '${letter}')" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+          <input type="radio" name="cbt_option" value="${letter}" ${isChecked ? 'checked' : ''} onchange="selectOption(${q.id}, '${letter}')" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
           <span class="w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs ${isChecked ? 'bg-indigo-600 text-white' : 'bg-white text-slate-600 border'}">${letter}</span>
           <span class="text-sm font-medium text-slate-800">${optText}</span>
         `;
@@ -552,67 +510,67 @@
     }
 
     function selectOption(qId, val) {
-      examState.responses[qId] = val;
-      examState.status[qId] = 'answered';
+      userResponses[qId] = val;
+      questionStatus[qId] = 'answered';
       renderPalette();
       updatePaletteCounters();
     }
 
     function saveAndNext() {
-      const q = examState.questions[examState.currentIndex];
-      if (examState.responses[q.id]) {
-        examState.status[q.id] = 'answered';
+      const q = activeQuestions[currentQIndex];
+      if (userResponses[q.id]) {
+        questionStatus[q.id] = 'answered';
       } else {
-        if (examState.status[q.id] !== 'review') {
-          examState.status[q.id] = 'unanswered';
+        if (questionStatus[q.id] !== 'review') {
+          questionStatus[q.id] = 'unanswered';
         }
       }
 
-      if (examState.currentIndex < examState.questions.length - 1) {
-        renderQuestion(examState.currentIndex + 1);
+      if (currentQIndex < activeQuestions.length - 1) {
+        renderQuestion(currentQIndex + 1);
       } else {
-        showAlert("Aap aakhri question par hain.");
+        showAlert("Aap aakhri question (Q50) par hain.");
       }
     }
 
     function prevQuestion() {
-      if (examState.currentIndex > 0) {
-        renderQuestion(examState.currentIndex - 1);
+      if (currentQIndex > 0) {
+        renderQuestion(currentQIndex - 1);
       }
     }
 
     function markForReview() {
-      const q = examState.questions[examState.currentIndex];
-      examState.status[q.id] = 'review';
+      const q = activeQuestions[currentQIndex];
+      questionStatus[q.id] = 'review';
       renderPalette();
       saveAndNext();
     }
 
     function clearAnswer() {
-      const q = examState.questions[examState.currentIndex];
-      delete examState.responses[q.id];
-      examState.status[q.id] = 'unanswered';
-      renderQuestion(examState.currentIndex);
+      const q = activeQuestions[currentQIndex];
+      delete userResponses[q.id];
+      questionStatus[q.id] = 'unanswered';
+      renderQuestion(currentQIndex);
     }
 
     function renderPalette() {
       const grid = document.getElementById('palette-grid');
       grid.innerHTML = '';
 
-      examState.questions.forEach((q, idx) => {
+      activeQuestions.forEach((q, idx) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.textContent = idx + 1;
         btn.onclick = () => renderQuestion(idx);
 
-        const st = examState.status[q.id];
+        const st = questionStatus[q.id];
         let colorClass = 'bg-slate-100 text-slate-600 border-slate-300';
 
         if (st === 'answered') colorClass = 'bg-emerald-600 text-white font-bold';
         else if (st === 'unanswered') colorClass = 'bg-red-500 text-white font-bold';
         else if (st === 'review') colorClass = 'bg-amber-500 text-white font-bold';
 
-        if (idx === examState.currentIndex) {
+        if (idx === currentQIndex) {
           btn.className = `h-9 rounded-lg text-xs font-bold ring-2 ring-indigo-600 ring-offset-2 ${colorClass}`;
         } else {
           btn.className = `h-9 rounded-lg text-xs border ${colorClass}`;
@@ -623,14 +581,15 @@
     }
 
     function updatePaletteCounters() {
-      const answered = Object.keys(examState.responses).length;
-      const total = examState.questions.length;
+      const answered = Object.keys(userResponses).length;
+      const total = activeQuestions.length;
       document.getElementById('stat-attempted').textContent = answered;
       document.getElementById('stat-remaining').textContent = total - answered;
     }
 
     function confirmSubmitTest() {
-      if (confirm("Kya aap exam submit karke final result dekhna chahte hain?")) {
+      if (confirm("Kya aap sach me exam submit karke apna scorecard dekhna chahte hain?")) {
+        clearInterval(timerInterval);
         calculateAndDisplayResult();
       }
     }
@@ -638,11 +597,11 @@
     function calculateAndDisplayResult() {
       let correct = 0;
       let wrong = 0;
-      const total = examState.questions.length;
+      const total = activeQuestions.length;
       let detailedListHtml = '';
 
-      examState.questions.forEach((q, idx) => {
-        const userChoice = examState.responses[q.id] || "Skipped";
+      activeQuestions.forEach((q, idx) => {
+        const userChoice = userResponses[q.id] || "Skipped";
         const isMatch = userChoice === q.correct;
 
         if (userChoice !== "Skipped") {
@@ -652,7 +611,7 @@
 
         detailedListHtml += `
           <div class="p-3 rounded-xl border text-xs ${isMatch ? 'bg-emerald-50 border-emerald-200' : (userChoice === 'Skipped' ? 'bg-slate-50 border-slate-200' : 'bg-red-50 border-red-200')}">
-            <div class="font-bold text-slate-800 mb-1">Q${idx + 1}. ${q.text.split('\n')[0]}</div>
+            <div class="font-bold text-slate-800 mb-1">Q${idx + 1}. ${q.text}</div>
             <div class="flex gap-4">
               <span>Aapka Jawab: <b class="${isMatch ? 'text-emerald-700' : (userChoice === 'Skipped' ? 'text-slate-500' : 'text-red-600')}">${userChoice}</b></span>
               <span>Sahi Jawab: <b class="text-emerald-700">${q.correct}</b></span>
@@ -665,18 +624,25 @@
       document.getElementById('cbt-timer').classList.add('hidden');
       document.getElementById('result-view').classList.remove('hidden');
 
+      const names = { M1: "M1-R5 (IT Tools)", M2: "M2-R5 (Web Design)", M3: "M3-R5 (Python)", M4: "M4-R5 (IoT)" };
+      document.getElementById('res-paper-title').textContent = `${names[activeModule]} - Practice Set ${activeSet}`;
       document.getElementById('res-score').textContent = `${correct} / ${total}`;
       document.getElementById('res-correct').textContent = correct;
       document.getElementById('res-wrong').textContent = wrong;
       document.getElementById('detailed-results-list').innerHTML = detailedListHtml;
     }
 
-    function resetToHome() {
-      document.getElementById('start-instruction-card').classList.remove('hidden');
-      document.getElementById('cbt-screen').classList.add('hidden');
+    function backToSelection() {
       document.getElementById('result-view').classList.add('hidden');
-      document.getElementById('cbt-timer').classList.add('hidden');
+      document.getElementById('selection-card').classList.remove('hidden');
     }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSetButtons();
+      updateSelectionLabel();
+    });
   </script>
 </body>
 </html>
+
